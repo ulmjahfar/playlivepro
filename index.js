@@ -9,8 +9,9 @@ process.env.NODE_PATH = (process.env.NODE_PATH ? process.env.NODE_PATH + path.de
 require('module')._initPaths();
 
 // Change to backend directory to ensure all relative paths work correctly
-process.chdir(path.join(__dirname, 'backend'));
+const backendDir = path.join(__dirname, 'backend');
+process.chdir(backendDir);
 
-// Start the backend server (server.js already loads dotenv)
-require('./server.js');
+// Start the backend server using absolute path (server.js already loads dotenv)
+require(path.join(backendDir, 'server.js'));
 
