@@ -1,8 +1,16 @@
 // Root entry point for deployment
 // This file starts the backend server
-require('dotenv').config();
 const path = require('path');
 
-// Start the backend server
-require(path.join(__dirname, 'backend', 'server.js'));
+// Set NODE_PATH to include backend/node_modules so dependencies can be resolved
+// This ensures that when server.js requires modules, they are found in backend/node_modules
+const backendNodeModules = path.join(__dirname, 'backend', 'node_modules');
+process.env.NODE_PATH = (process.env.NODE_PATH ? process.env.NODE_PATH + path.delimiter : '') + backendNodeModules;
+require('module')._initPaths();
+
+// Change to backend directory to ensure all relative paths work correctly
+process.chdir(path.join(__dirname, 'backend'));
+
+// Start the backend server (server.js already loads dotenv)
+require('./server.js');
 
