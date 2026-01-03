@@ -1,0 +1,1032 @@
+/* Tournament Admin Login - Luxe Command Center Design */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ============================================
+   DESIGN TOKENS - Purple/Pink Gradient
+   ============================================ */
+:root {
+  --tal-bg-primary: #111827;
+  --tal-bg-secondary: #111827;
+  --tal-bg-card: rgba(17, 24, 39, 0.85);
+  --tal-accent-primary: #a855f7;
+  --tal-accent-secondary: #ec4899;
+  --tal-accent-warm: #f59e0b;
+  --tal-accent-glow: rgba(168, 85, 247, 0.4);
+  --tal-text-primary: #f1f5f9;
+  --tal-text-secondary: #94a3b8;
+  --tal-text-muted: #64748b;
+  --tal-border-subtle: rgba(168, 85, 247, 0.15);
+  --tal-border-active: rgba(168, 85, 247, 0.4);
+  --tal-gradient-hero: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #d946ef 100%);
+  --tal-gradient-warm: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --tal-shadow-glow: 0 0 60px rgba(168, 85, 247, 0.15);
+  --tal-radius-lg: 24px;
+  --tal-radius-md: 16px;
+  --tal-radius-sm: 12px;
+}
+
+/* ============================================
+   BASE CONTAINER
+   ============================================ */
+.tournament-admin-login {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: 
+    radial-gradient(ellipse at top left, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #111827 0%, #0f172a 50%, #111827 100%);
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.2) transparent;
+}
+
+.tournament-admin-login::-webkit-scrollbar {
+  width: 2px;
+}
+
+.tournament-admin-login::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tournament-admin-login::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 1px;
+}
+
+.tournament-admin-login::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+.tournament-admin-login * {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   ANIMATED BACKGROUND
+   ============================================ */
+.tal-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tal-gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  animation: orbDrift 30s ease-in-out infinite;
+}
+
+.tal-orb-1 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--tal-accent-primary) 0%, transparent 70%);
+  top: -400px;
+  right: -200px;
+}
+
+.tal-orb-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--tal-accent-warm) 0%, transparent 70%);
+  bottom: -300px;
+  left: -200px;
+  animation-delay: -15s;
+}
+
+.tal-orb-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--tal-accent-secondary) 0%, transparent 70%);
+  top: 50%;
+  left: 30%;
+  animation-delay: -8s;
+  opacity: 0.15;
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(30px, -50px) scale(1.05) rotate(5deg); }
+  50% { transform: translate(-20px, 20px) scale(0.98) rotate(-3deg); }
+  75% { transform: translate(40px, 30px) scale(1.02) rotate(8deg); }
+}
+
+.tal-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+}
+
+/* Floating particles */
+.tal-background::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--tal-accent-primary);
+  border-radius: 50%;
+  top: 20%;
+  left: 15%;
+  box-shadow: 
+    100px 50px 0 rgba(168, 85, 247, 0.4),
+    200px 150px 0 rgba(236, 72, 153, 0.3),
+    400px 100px 0 rgba(245, 158, 11, 0.4),
+    600px 200px 0 rgba(168, 85, 247, 0.2),
+    800px 80px 0 rgba(236, 72, 153, 0.3),
+    150px 400px 0 rgba(245, 158, 11, 0.3),
+    350px 350px 0 rgba(168, 85, 247, 0.4),
+    550px 450px 0 rgba(236, 72, 153, 0.2);
+  animation: particleFloat 20s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+/* ============================================
+   MAIN LAYOUT
+   ============================================ */
+.tal-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 480px;
+  min-height: 100vh;
+  height: auto;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 30px;
+  padding: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.tal-layout {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.2) transparent;
+}
+
+.tal-layout::-webkit-scrollbar {
+  width: 2px;
+}
+
+.tal-layout::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tal-layout::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 1px;
+}
+
+.tal-layout::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.tal-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+  overflow: visible;
+  min-height: 100%;
+}
+
+.tal-hero-content {
+  max-width: 520px;
+  overflow: visible;
+}
+
+.tal-brand {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.tal-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  padding: 10px;
+  border: 2px solid var(--tal-border-subtle);
+  box-shadow: 
+    0 20px 50px rgba(168, 85, 247, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  object-fit: contain;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(20px);
+}
+
+.tal-logo:hover {
+  transform: scale(1.08) rotate(-5deg);
+  box-shadow: 
+    0 30px 70px rgba(168, 85, 247, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: var(--tal-border-active);
+}
+
+.tal-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #ffffff 0%, var(--tal-accent-primary) 50%, var(--tal-accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  animation: titleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes titleReveal {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tal-subtitle {
+  font-size: 13px;
+  color: var(--tal-accent-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0 0 20px 0;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tal-divider {
+  width: 80px;
+  height: 4px;
+  background: var(--tal-gradient-hero);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tal-divider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.tal-description {
+  font-size: 15px;
+  color: var(--tal-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  font-weight: 400;
+}
+
+.tal-features {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tal-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: rgba(168, 85, 247, 0.06);
+  border: 1px solid var(--tal-border-subtle);
+  border-radius: 50px;
+  color: var(--tal-accent-primary);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.tal-feature:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: var(--tal-border-active);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+}
+
+.tal-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin-top: auto;
+}
+
+.tal-footer p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--tal-text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   LOGIN CARD
+   ============================================ */
+.tal-login-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  gap: 16px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.tal-login-area {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.2) transparent;
+}
+
+.tal-login-area::-webkit-scrollbar {
+  width: 2px;
+}
+
+.tal-login-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tal-login-area::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.2);
+  border-radius: 1px;
+}
+
+.tal-login-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+.tal-login-card {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--tal-border-subtle);
+  border-radius: var(--tal-radius-lg);
+  padding: 36px 32px;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  animation: cardFloat 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.tal-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--tal-gradient-hero);
+}
+
+@keyframes cardFloat {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card Header */
+.tal-card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.tal-admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(236, 72, 153, 0.08));
+  border: 1px solid var(--tal-border-subtle);
+  border-radius: 50px;
+  margin-bottom: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tal-accent-primary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tal-card-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--tal-text-primary);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.tal-card-header p {
+  font-size: 13px;
+  color: var(--tal-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.tal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tal-fields-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.tal-fields-row::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    var(--tal-border-subtle) 20%, 
+    var(--tal-border-subtle) 80%, 
+    transparent 100%);
+  transform: translateX(-50%);
+  opacity: 0.3;
+}
+
+.tal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.tal-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tal-accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.tal-field input,
+.tal-field select {
+  width: 100%;
+  padding: 15px 18px;
+  background: rgba(10, 15, 26, 0.8);
+  border: 2px solid var(--tal-border-subtle);
+  border-radius: var(--tal-radius-sm);
+  color: var(--tal-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Sora', sans-serif;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+  min-height: 48px;
+}
+
+.tal-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a855f7' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.tal-field input:focus,
+.tal-field select:focus {
+  outline: none;
+  border-color: var(--tal-accent-primary);
+  background: rgba(10, 15, 26, 1);
+  box-shadow: 
+    0 0 0 4px rgba(168, 85, 247, 0.1),
+    0 0 30px rgba(168, 85, 247, 0.1),
+    inset 0 1px 2px rgba(168, 85, 247, 0.05);
+  transform: translateY(-1px);
+}
+
+.tal-field input::placeholder {
+  color: var(--tal-text-muted);
+  font-weight: 400;
+}
+
+/* Password Field */
+.tal-password-wrap {
+  position: relative;
+}
+
+.tal-password-wrap input {
+  padding-right: 50px;
+}
+
+.tal-password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--tal-text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.tal-password-toggle:hover {
+  color: var(--tal-accent-primary);
+  background: rgba(168, 85, 247, 0.12);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Options Row */
+.tal-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+  padding: 0 2px;
+}
+
+.tal-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--tal-text-secondary);
+  font-weight: 500;
+}
+
+.tal-checkbox input {
+  display: none;
+}
+
+.tal-checkmark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--tal-border-subtle);
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease;
+  background: rgba(10, 15, 26, 0.6);
+}
+
+.tal-checkbox input:checked ~ .tal-checkmark {
+  background: var(--tal-gradient-hero);
+  border-color: transparent;
+}
+
+.tal-checkbox input:checked ~ .tal-checkmark::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tal-forgot {
+  background: transparent;
+  border: none;
+  color: var(--tal-accent-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tal-forgot:hover {
+  color: var(--tal-accent-secondary);
+  background: rgba(168, 85, 247, 0.08);
+}
+
+/* Message Styles */
+.tal-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--tal-radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  animation: errorShake 0.4s ease;
+}
+
+.tal-success {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.tal-error {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* Submit Button */
+.tal-submit {
+  width: 100%;
+  padding: 17px 28px;
+  background: var(--tal-gradient-hero);
+  border: none;
+  border-radius: var(--tal-radius-sm);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 10px 40px rgba(168, 85, 247, 0.3),
+    0 0 0 0 transparent;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-top: 4px;
+}
+
+.tal-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.tal-submit:hover:not(:disabled)::before {
+  transform: translateX(100%);
+}
+
+.tal-submit:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 20px 50px rgba(168, 85, 247, 0.4),
+    0 0 0 4px rgba(168, 85, 247, 0.15);
+}
+
+.tal-submit:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.tal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tal-arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.tal-submit:hover:not(:disabled) .tal-arrow {
+  transform: translateX(5px);
+}
+
+.tal-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Security Badge */
+.tal-security {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--tal-text-muted);
+  padding-top: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+/* Support Links */
+.tal-support {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--tal-border-subtle);
+  border-radius: var(--tal-radius-md);
+  max-width: 680px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.tal-support > span:first-child {
+  font-size: 13px;
+  color: var(--tal-text-muted);
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.tal-support a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(168, 85, 247, 0.06);
+  border: 1px solid var(--tal-border-subtle);
+  border-radius: 10px;
+  color: var(--tal-accent-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tal-support a:hover {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: var(--tal-border-active);
+  color: var(--tal-accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1100px) {
+  .tal-layout {
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+    padding: 24px;
+    height: 100vh;
+  }
+  
+  .tal-title {
+    font-size: 42px;
+  }
+  
+  .tal-login-card {
+    max-width: 600px;
+    padding: 32px 28px;
+  }
+  
+  .tal-fields-row {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tal-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 16px;
+    padding: 16px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .tal-layout::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  .tal-layout::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .tal-layout::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.2);
+    border-radius: 1px;
+  }
+  
+  .tal-layout::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.3);
+  }
+  
+  .tal-login-area {
+    order: 1;
+    padding: 10px 0;
+    height: auto;
+  }
+  
+  .tal-hero {
+    order: 2;
+    padding: 10px 0 20px;
+    text-align: center;
+    align-items: center;
+    height: auto;
+  }
+  
+  .tal-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .tal-title {
+    font-size: 42px;
+  }
+  
+  .tal-features {
+    justify-content: center;
+  }
+  
+  .tal-footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    margin-top: 32px;
+  }
+  
+  .tal-login-card {
+    max-width: 440px;
+  }
+  
+  .tal-fields-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  
+  .tal-fields-row::before {
+    display: none;
+  }
+  
+  .tal-support {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 520px) {
+  .tal-layout {
+    padding: 16px;
+  }
+  
+  .tal-login-area {
+    padding: 10px 0;
+  }
+  
+  .tal-login-card {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  
+  .tal-card-header h2 {
+    font-size: 24px;
+  }
+  
+  .tal-hero {
+    padding: 16px 0 30px;
+  }
+  
+  .tal-title {
+    font-size: 34px;
+    letter-spacing: -1px;
+  }
+  
+  .tal-subtitle {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  
+  .tal-description {
+    display: none;
+  }
+  
+  .tal-features {
+    display: none;
+  }
+  
+  .tal-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  
+  .tal-support {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+  
+  .tal-support > span:first-child {
+    margin-right: 0;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .tal-gradient-orb,
+  .tal-login-card,
+  .tal-logo,
+  .tal-title,
+  .tal-divider::after,
+  .tal-background::before {
+    animation: none;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .tal-field input,
+  .tal-field select {
+    border-width: 3px;
+  }
+  
+  .tal-submit {
+    border: 2px solid white;
+  }
+  
+  .tal-login-card {
+    border-width: 2px;
+  }
+}

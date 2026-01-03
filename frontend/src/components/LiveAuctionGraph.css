@@ -1,0 +1,134 @@
+.live-auction-graph {
+  padding: var(--spacing-lg);
+  background: var(--admin-bg-primary);
+  border: 1px solid var(--admin-border-subtle);
+  border-radius: var(--admin-radius-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.graph-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.graph-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.graph-tab {
+  padding: 8px 16px;
+  border: 1px solid var(--admin-border-medium);
+  border-radius: var(--admin-radius-md);
+  background: var(--admin-bg-secondary);
+  color: var(--admin-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.graph-tab:hover {
+  background: var(--admin-bg-muted);
+  border-color: var(--admin-accent-primary);
+}
+
+.graph-tab.active {
+  background: var(--admin-accent-primary);
+  color: white;
+  border-color: var(--admin-accent-primary);
+}
+
+.graph-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+  padding: var(--spacing-md);
+  background: var(--admin-bg-secondary);
+  border-radius: var(--admin-radius-md);
+  border: 1px solid var(--admin-border-subtle);
+  text-align: center;
+}
+
+.stat-card label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--admin-text-secondary);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card span {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--admin-accent-primary);
+}
+
+.graph-content {
+  min-height: 400px;
+}
+
+.chart-container {
+  height: 400px;
+  position: relative;
+}
+
+.chart-container h4 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--admin-text-primary);
+}
+
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--admin-text-secondary);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .graph-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .graph-tabs {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .graph-tab {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .graph-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+

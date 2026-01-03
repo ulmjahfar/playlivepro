@@ -1,0 +1,1449 @@
+/* ============================================
+   PROFESSIONAL OBS STREAMING PAGE STYLES
+   Optimized for 1920x1080 @ 60fps
+   ============================================ */
+
+.tournament-stream-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b3d 100%);
+  color: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   CONFETTI & EFFECTS
+   ============================================ */
+
+.stream-confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.stream-confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: stream-confetti-fall 4s linear forwards;
+  border-radius: 50%;
+}
+
+@keyframes stream-confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.stream-reconnection-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(16, 185, 129, 0.95);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  z-index: 10001;
+  animation: stream-slideInRight 0.3s ease-out;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  font-weight: 600;
+}
+
+@keyframes stream-slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   AUTO-HIDING HEADER BAR
+   ============================================ */
+
+.stream-header-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(30, 144, 255, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  padding: 15px 40px;
+}
+
+.stream-header-overlay.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.stream-header-overlay.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.stream-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.stream-header-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.stream-header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.stream-header-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  color: #f8fafc;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.stream-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.stream-header-date,
+.stream-header-venue {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* ============================================
+   VIDEO STREAMING
+   ============================================ */
+
+.stream-video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stream-video-background .stream-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0.3;
+}
+
+.stream-video-pip {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  background: #000;
+}
+
+.stream-video-pip .stream-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.stream-video-side {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 480px;
+  height: 100vh;
+  z-index: 100;
+  background: #000;
+}
+
+.stream-video-side .stream-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.stream-video-mute-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 101;
+  transition: background 0.2s;
+}
+
+.stream-video-mute-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* ============================================
+   MAIN DISPLAY ZONE
+   ============================================ */
+
+.stream-main-display {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.stream-view {
+  width: 100%;
+  max-width: 1600px;
+  animation: stream-fadeIn 0.5s ease-in;
+  will-change: opacity, transform;
+}
+
+@keyframes stream-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   PLAYER PRESENTATION VIEW
+   ============================================ */
+
+.stream-view-player-presentation {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.stream-player-card-left {
+  position: relative;
+}
+
+.stream-player-photo-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 125%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.stream-player-photo-large {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: stream-slideUp 0.6s ease-out;
+}
+
+@keyframes stream-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stream-player-photo-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.5), rgba(255, 230, 109, 0.5));
+  z-index: -1;
+  filter: blur(20px);
+  animation: stream-glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes stream-glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.stream-player-card-right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.stream-player-name-large {
+  font-size: 64px;
+  font-weight: 700;
+  margin: 0;
+  color: #f8fafc;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: stream-fadeIn 0.6s ease-out 0.2s both;
+}
+
+.stream-player-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.stream-player-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stream-player-info-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.stream-player-info-value {
+  font-size: 20px;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.stream-player-base-price-large {
+  font-size: 32px;
+  color: #ffe66d;
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(255, 230, 109, 0.5);
+  padding: 20px;
+  background: rgba(255, 230, 109, 0.1);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stream-player-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(78, 205, 196, 0.2);
+  border: 1px solid rgba(78, 205, 196, 0.5);
+  border-radius: 20px;
+  font-size: 12px;
+  color: #4ecdc4;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+/* Bid Timeline Bar */
+.stream-bid-timeline {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.stream-bid-timeline-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.stream-bid-timeline-items {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.stream-bid-timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  min-width: 120px;
+  animation: stream-slideInLeft 0.4s ease-out;
+}
+
+@keyframes stream-slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stream-bid-timeline-team {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.stream-bid-timeline-amount {
+  font-size: 18px;
+  color: #ffe66d;
+  font-weight: 700;
+}
+
+/* ============================================
+   LIVE BIDDING VIEW
+   ============================================ */
+
+.stream-view-live-bidding {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.stream-bidding-left {
+  display: flex;
+  justify-content: center;
+}
+
+.stream-player-card-compact {
+  text-align: center;
+}
+
+.stream-player-photo-compact {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(78, 205, 196, 0.5);
+  box-shadow: 0 8px 30px rgba(78, 205, 196, 0.3);
+  margin-bottom: 20px;
+}
+
+.stream-player-name-compact {
+  font-size: 24px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.stream-bidding-right {
+  display: flex;
+  justify-content: center;
+}
+
+.stream-bidding-panel {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  min-width: 500px;
+}
+
+.stream-current-bid-large {
+  margin-bottom: 30px;
+}
+
+.stream-bid-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.stream-bid-amount-flip {
+  font-size: 72px;
+  font-weight: 700;
+  color: #ffe66d;
+  text-shadow: 0 0 30px rgba(255, 230, 109, 0.5);
+  animation: stream-flipIn 0.5s ease-out;
+}
+
+@keyframes stream-flipIn {
+  0% {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.stream-leading-team-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background: rgba(78, 205, 196, 0.1);
+  border-radius: 12px;
+}
+
+.stream-leading-team-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(78, 205, 196, 0.5);
+}
+
+.stream-leading-team-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4ecdc4;
+}
+
+.stream-call-indicator {
+  margin-bottom: 30px;
+  min-height: 40px;
+}
+
+.stream-call-text {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  animation: stream-pulse 1.5s ease-in-out infinite;
+}
+
+.stream-call-first {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.2);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.stream-call-second {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.stream-call-final {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  animation: stream-pulseUrgent 1s ease-in-out infinite;
+}
+
+@keyframes stream-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes stream-pulseUrgent {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Timer Circle */
+.stream-timer-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.stream-timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.stream-timer-circle-progress {
+  transition: stroke-dasharray 0.3s linear;
+}
+
+.stream-timer-circle.urgent .stream-timer-circle-progress {
+  filter: drop-shadow(0 0 10px #ef4444);
+}
+
+.stream-timer-circle.warning .stream-timer-circle-progress {
+  filter: drop-shadow(0 0 10px #fbbf24);
+}
+
+.stream-timer-circle.normal .stream-timer-circle-progress {
+  filter: drop-shadow(0 0 10px #10b981);
+}
+
+.stream-timer-value-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 700;
+  color: #f8fafc;
+  font-family: 'Courier New', monospace;
+}
+
+.stream-timer-circle.urgent .stream-timer-value-circle {
+  color: #ef4444;
+  animation: stream-pulseUrgent 1s ease-in-out infinite;
+}
+
+.stream-timer-circle.warning .stream-timer-value-circle {
+  color: #fbbf24;
+}
+
+/* ============================================
+   SOLD ANIMATION
+   ============================================ */
+
+.stream-view-sold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.stream-sold-content {
+  text-align: center;
+  animation: stream-scaleIn 0.6s ease-out;
+  z-index: 100;
+}
+
+@keyframes stream-scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.stream-sold-title {
+  font-size: 96px;
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  animation: stream-glowReveal 1s ease-out;
+}
+
+@keyframes stream-glowReveal {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.stream-sold-player-name {
+  font-size: 48px;
+  color: #f8fafc;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.stream-sold-team-logo-explosion {
+  margin: 40px 0;
+  animation: stream-logoExplosion 1s ease-out;
+}
+
+@keyframes stream-logoExplosion {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.stream-sold-logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffd700;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+}
+
+.stream-sold-team-name {
+  font-size: 56px;
+  font-weight: 700;
+  color: #4ecdc4;
+  margin: 30px 0;
+  text-shadow: 0 0 30px rgba(78, 205, 196, 0.6);
+}
+
+.stream-sold-price {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stream-sold-price-label {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.stream-sold-price-value {
+  font-size: 80px;
+  font-weight: 700;
+  color: #ffe66d;
+  text-shadow: 0 0 40px rgba(255, 230, 109, 0.8);
+  animation: stream-numberCounter 1s ease-out;
+}
+
+@keyframes stream-numberCounter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   UNSOLD ANIMATION
+   ============================================ */
+
+.stream-view-unsold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.stream-unsold-content {
+  text-align: center;
+  padding: 60px;
+  background: rgba(100, 100, 100, 0.2);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  animation: stream-fadeIn 0.5s ease-out;
+}
+
+.stream-unsold-icon {
+  font-size: 120px;
+  margin-bottom: 30px;
+  animation: stream-bounce 1s ease-in-out infinite;
+}
+
+@keyframes stream-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.stream-unsold-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.stream-unsold-player-name {
+  font-size: 36px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 20px 0;
+}
+
+.stream-unsold-message {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 30px;
+}
+
+/* ============================================
+   TEAM GROUPING VIEW
+   ============================================ */
+
+.stream-view-grouping {
+  width: 100%;
+  padding: 40px;
+}
+
+/* Wheel Mode */
+.stream-grouping-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.stream-grouping-wheel {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.stream-wheel-team {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+}
+
+.stream-wheel-team-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stream-wheel-team-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  border: 3px solid white;
+}
+
+.stream-wheel-team-name {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+.stream-grouping-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.stream-group-item {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stream-group-item h3 {
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  color: #ffe66d;
+  font-weight: 700;
+}
+
+.stream-group-teams {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stream-group-team-name {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #f8fafc;
+  font-size: 14px;
+}
+
+/* Slot Mode */
+.stream-grouping-slot-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  width: 100%;
+  padding: 40px;
+}
+
+.stream-slot-column {
+  flex: 1;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stream-slot-group-label {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stream-slot-reel {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  border: 3px solid white;
+  position: relative;
+  will-change: transform;
+}
+
+.stream-slot-reel.spinning {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  border-color: rgba(255, 215, 0, 0.8);
+}
+
+.stream-slot-reel-content {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.stream-slot-team {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+}
+
+.stream-slot-team img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+/* Card Shuffle Mode */
+.stream-grouping-cards-container {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.stream-card-shuffle {
+  width: 180px;
+  height: 240px;
+  position: absolute;
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.stream-card-shuffle.flying {
+  animation: stream-cardFly 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  z-index: 10;
+}
+
+@keyframes stream-cardFly {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(calc(var(--target-x, 0) * 0.5), -150px) rotate(90deg) scale(1.2);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate(var(--target-x, 0), -80px) rotate(270deg) scale(1.1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(var(--target-x, 0), 0) rotate(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.stream-card-front {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(102, 173, 255, 0.5);
+}
+
+.stream-card-front img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1b53c0;
+}
+
+.stream-card-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #1b53c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: 700;
+}
+
+.stream-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b53c0;
+  text-align: center;
+}
+
+.stream-grouping-cards-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.stream-card-group {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stream-card-group h3 {
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  color: #ffe66d;
+  font-weight: 700;
+}
+
+.stream-card-group-team {
+  display: block;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #f8fafc;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* ============================================
+   TEAM COMPARISON VIEW
+   ============================================ */
+
+.stream-view-comparison {
+  padding: 40px;
+}
+
+.stream-comparison-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 40px 0;
+  color: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.stream-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.stream-comparison-team-card {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.stream-comparison-team-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.stream-comparison-team-card h3 {
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.stream-comparison-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.stream-comparison-stat {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 16px;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+/* ============================================
+   FINAL RESULTS VIEW
+   ============================================ */
+
+.tournament-stream-container.completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.stream-final-results {
+  width: 100%;
+  max-width: 1400px;
+  padding: 60px 40px;
+  z-index: 100;
+  position: relative;
+}
+
+.stream-final-results-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.stream-final-results-header h1 {
+  font-size: 72px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.stream-final-results-header p {
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.stream-final-results-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.stream-final-team-card {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.stream-final-team-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stream-final-team-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.stream-final-team-header h3 {
+  font-size: 28px;
+  margin: 0;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.stream-final-team-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.stream-final-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.stream-final-stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.stream-final-stat-value {
+  font-size: 20px;
+  color: #ffe66d;
+  font-weight: 700;
+}
+
+.stream-final-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.stream-final-footer p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ============================================
+   WAITING STATE
+   ============================================ */
+
+.stream-view-waiting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.stream-waiting-content {
+  text-align: center;
+}
+
+.stream-waiting-icon {
+  font-size: 120px;
+  margin-bottom: 30px;
+  animation: stream-bounce 2s ease-in-out infinite;
+}
+
+.stream-waiting-content h2 {
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1920px) {
+  .stream-main-display {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .stream-view-player-presentation {
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+  }
+  
+  .stream-player-name-large {
+    font-size: 48px;
+  }
+  
+  .stream-bid-amount-flip {
+    font-size: 56px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .stream-view-player-presentation {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .stream-view-live-bidding {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .stream-grouping-wheel {
+    width: 500px;
+    height: 500px;
+  }
+  
+  .stream-sold-title {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stream-header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .stream-header-title {
+    font-size: 24px;
+  }
+  
+  .stream-player-name-large {
+    font-size: 36px;
+  }
+  
+  .stream-bid-amount-flip {
+    font-size: 48px;
+  }
+  
+  .stream-sold-title {
+    font-size: 48px;
+  }
+  
+  .stream-grouping-wheel {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+.stream-view,
+.stream-grouping-wheel,
+.stream-slot-reel,
+.stream-card-shuffle {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.stream-view {
+  contain: layout style paint;
+}
+

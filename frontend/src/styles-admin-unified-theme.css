@@ -1,0 +1,289 @@
+/* Unified Admin Theme - Fresh Warm Design */
+/* This theme is used across all admin and tournament pages for visual consistency */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Space+Mono:wght@400;700&display=swap');
+
+/* ============================================
+   DESIGN TOKENS - WARM LIGHT THEME
+   ============================================ */
+:root {
+  /* Core Backgrounds */
+  --admin-bg-base: #faf8f5;
+  --admin-bg-primary: #ffffff;
+  --admin-bg-secondary: #f8f6f3;
+  --admin-bg-card: #ffffff;
+  --admin-bg-elevated: #ffffff;
+  --admin-bg-muted: #f5f3f0;
+  --admin-bg-accent: #fff7ed;
+  
+  /* Primary Accent - Warm Coral */
+  --admin-accent-primary: #e94e35;
+  --admin-accent-primary-soft: rgba(233, 78, 53, 0.1);
+  --admin-accent-primary-hover: #d4432c;
+  
+  /* Secondary Accent - Deep Teal */
+  --admin-accent-secondary: #0d6659;
+  --admin-accent-secondary-soft: rgba(13, 102, 89, 0.1);
+  
+  /* Tertiary - Warm Amber */
+  --admin-accent-warm: #f59e0b;
+  --admin-accent-warm-soft: rgba(245, 158, 11, 0.12);
+  
+  /* Status Colors */
+  --admin-accent-success: #059669;
+  --admin-accent-warning: #d97706;
+  --admin-accent-danger: #dc2626;
+  --admin-accent-info: #0284c7;
+  
+  /* Text Colors */
+  --admin-text-primary: #1a1a1a;
+  --admin-text-secondary: #4a4a4a;
+  --admin-text-tertiary: #737373;
+  --admin-text-muted: #a3a3a3;
+  --admin-text-inverse: #ffffff;
+  
+  /* Borders */
+  --admin-border-subtle: #e5e2de;
+  --admin-border-medium: #d4d1cc;
+  --admin-border-active: var(--admin-accent-primary);
+  
+  /* Gradients */
+  --admin-gradient-accent: linear-gradient(135deg, var(--admin-accent-primary) 0%, #f97316 100%);
+  --admin-gradient-warm: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  --admin-gradient-card: linear-gradient(180deg, var(--admin-bg-accent) 0%, var(--admin-bg-primary) 100%);
+  
+  /* Shadows */
+  --admin-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --admin-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --admin-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --admin-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --admin-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --admin-shadow-glow: 0 0 40px rgba(233, 78, 53, 0.15);
+  --admin-shadow-card: var(--admin-shadow-sm);
+  
+  /* Radius */
+  --admin-radius-xs: 6px;
+  --admin-radius-sm: 10px;
+  --admin-radius-md: 14px;
+  --admin-radius-lg: 20px;
+  --admin-radius-xl: 28px;
+  --admin-radius-2xl: 36px;
+  
+  /* Typography */
+  --admin-font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --admin-font-mono: 'Space Mono', ui-monospace, monospace;
+  
+  /* Legacy compatibility - map old dash- variables to admin- variables */
+  --dash-bg-base: var(--admin-bg-base);
+  --dash-bg-primary: var(--admin-bg-primary);
+  --dash-bg-secondary: var(--admin-bg-secondary);
+  --dash-bg-card: var(--admin-bg-card);
+  --dash-bg-elevated: var(--admin-bg-elevated);
+  --dash-bg-muted: var(--admin-bg-muted);
+  --dash-bg-accent: var(--admin-bg-accent);
+  --dash-accent-primary: var(--admin-accent-primary);
+  --dash-accent-primary-soft: var(--admin-accent-primary-soft);
+  --dash-accent-primary-hover: var(--admin-accent-primary-hover);
+  --dash-accent-secondary: var(--admin-accent-secondary);
+  --dash-accent-secondary-soft: var(--admin-accent-secondary-soft);
+  --dash-accent-warm: var(--admin-accent-warm);
+  --dash-accent-warm-soft: var(--admin-accent-warm-soft);
+  --dash-accent-success: var(--admin-accent-success);
+  --dash-accent-warning: var(--admin-accent-warning);
+  --dash-accent-danger: var(--admin-accent-danger);
+  --dash-accent-info: var(--admin-accent-info);
+  --dash-text-primary: var(--admin-text-primary);
+  --dash-text-secondary: var(--admin-text-secondary);
+  --dash-text-tertiary: var(--admin-text-tertiary);
+  --dash-text-muted: var(--admin-text-muted);
+  --dash-text-inverse: var(--admin-text-inverse);
+  --dash-border-subtle: var(--admin-border-subtle);
+  --dash-border-medium: var(--admin-border-medium);
+  --dash-border-active: var(--admin-border-active);
+  --dash-gradient-accent: var(--admin-gradient-accent);
+  --dash-gradient-warm: var(--admin-gradient-warm);
+  --dash-gradient-card: var(--admin-gradient-card);
+  --dash-shadow-xs: var(--admin-shadow-xs);
+  --dash-shadow-sm: var(--admin-shadow-sm);
+  --dash-shadow-md: var(--admin-shadow-md);
+  --dash-shadow-lg: var(--admin-shadow-lg);
+  --dash-shadow-xl: var(--admin-shadow-xl);
+  --dash-shadow-glow: var(--admin-shadow-glow);
+  --dash-shadow-card: var(--admin-shadow-card);
+  --dash-radius-xs: var(--admin-radius-xs);
+  --dash-radius-sm: var(--admin-radius-sm);
+  --dash-radius-md: var(--admin-radius-md);
+  --dash-radius-lg: var(--admin-radius-lg);
+  --dash-radius-xl: var(--admin-radius-xl);
+  --dash-radius-2xl: var(--admin-radius-2xl);
+  --dash-font-sans: var(--admin-font-sans);
+  --dash-font-mono: var(--admin-font-mono);
+}
+
+/* ============================================
+   BASE STYLES FOR ADMIN PAGES
+   ============================================ */
+.admin-page-base {
+  min-height: 100vh;
+  width: 100%;
+  font-family: var(--admin-font-sans);
+  background: var(--admin-bg-base);
+  color: var(--admin-text-primary);
+}
+
+/* Background Pattern */
+.admin-page-base::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(233, 78, 53, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   COMMON COMPONENT STYLES
+   ============================================ */
+
+/* Cards */
+.admin-card {
+  background: var(--admin-bg-primary);
+  border: 1px solid var(--admin-border-subtle);
+  border-radius: var(--admin-radius-lg);
+  padding: 28px;
+  box-shadow: var(--admin-shadow-sm);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(233, 78, 53, 0.2), transparent);
+}
+
+.admin-card:hover {
+  border-color: var(--admin-border-medium);
+  transform: translateY(-2px);
+  box-shadow: var(--admin-shadow-md);
+}
+
+/* Buttons */
+.admin-btn-primary {
+  background: var(--admin-accent-primary);
+  color: var(--admin-text-inverse);
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--admin-radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--admin-font-sans);
+  box-shadow: 0 4px 16px rgba(233, 78, 53, 0.35);
+}
+
+.admin-btn-primary:hover {
+  background: var(--admin-accent-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(233, 78, 53, 0.4);
+}
+
+.admin-btn-secondary {
+  background: var(--admin-bg-primary);
+  color: var(--admin-accent-primary);
+  border: 2px solid var(--admin-border-subtle);
+  padding: 14px 28px;
+  border-radius: var(--admin-radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--admin-font-sans);
+}
+
+.admin-btn-secondary:hover {
+  border-color: var(--admin-accent-primary);
+  background: var(--admin-accent-primary-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--admin-shadow-md);
+}
+
+/* Input Fields */
+.admin-input {
+  padding: 12px 16px;
+  border: 1px solid var(--admin-border-subtle);
+  border-radius: var(--admin-radius-sm);
+  background: var(--admin-bg-primary);
+  font-size: 14px;
+  color: var(--admin-text-primary);
+  transition: all 0.2s ease;
+  font-family: var(--admin-font-sans);
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--admin-accent-primary);
+  box-shadow: 0 0 0 3px var(--admin-accent-primary-soft);
+}
+
+/* Headers */
+.admin-header {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.admin-subheader {
+  font-size: 14px;
+  color: var(--admin-text-secondary);
+  margin: 0;
+}
+
+/* Badges */
+.admin-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--admin-radius-full);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: var(--admin-font-mono);
+}
+
+.admin-badge-primary {
+  background: var(--admin-accent-primary-soft);
+  color: var(--admin-accent-primary);
+}
+
+.admin-badge-success {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--admin-accent-success);
+}
+
+.admin-badge-warning {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--admin-accent-warning);
+}
+
+.admin-badge-danger {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--admin-accent-danger);
+}
+
+
+
+
+
+
+

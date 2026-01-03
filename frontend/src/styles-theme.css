@@ -1,0 +1,264 @@
+/* Global Theme Styles - Applied to all pages */
+
+/* CSS Variables for Light Theme (Default) - Enhanced Modern Design */
+:root,
+[data-theme="light"],
+.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-color-hover: #cbd5e1;
+  --border-subtle: #f1f5f9;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 20px 25px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 25px 50px rgba(0, 0, 0, 0.12);
+  --accent-primary: #6366f1;
+  --accent-secondary: #8b5cf6;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --accent-light: #eef2ff;
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+  --gold: #fbbf24;
+  --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+
+/* Apply theme to body */
+body {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Super Admin Dashboard Theme Support */
+.super-admin-dashboard {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-light .super-admin-dashboard {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+}
+
+/* Dashboard Header */
+.dashboard-header-bar {
+  background: var(--bg-card);
+  border-bottom-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-light .dashboard-header-bar {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: #e2e8f0;
+}
+
+/* Content Sections */
+.content-section,
+.surface-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-light .content-section,
+.theme-light .surface-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Section Headers */
+.section-header {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-light .section-header {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+/* Section Titles */
+.section-title {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.theme-light .section-title {
+  color: #1e293b;
+}
+
+/* Metric Cards */
+.metric-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-light .metric-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Metric Values */
+.metric-value {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.theme-light .metric-value {
+  color: #1e293b;
+}
+
+/* Timeline Events */
+.timeline-event {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-light .timeline-event {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Panel Headers */
+.panel-header {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-light .panel-header {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+/* Panel Titles */
+.panel-header h3 {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.theme-light .panel-header h3 {
+  color: #1e293b;
+}
+
+/* Text Colors */
+.theme-light p,
+.theme-light span,
+.theme-light div {
+  color: var(--text-secondary);
+}
+
+/* Buttons - Keep accent colors but adjust for theme */
+.section-action,
+.primary-btn {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  border-color: var(--accent-secondary);
+  transition: all 0.3s ease;
+}
+
+.section-action:hover,
+.primary-btn:hover {
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Secondary Buttons */
+.secondary-btn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.theme-light .secondary-btn {
+  background: rgba(248, 250, 252, 0.6);
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+.secondary-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+}
+
+/* Links */
+a {
+  color: var(--accent-primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* Input Fields */
+input,
+textarea,
+select {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-light input,
+.theme-light textarea,
+.theme-light select {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Tables */
+table {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.theme-light table {
+  background: #ffffff;
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+/* Smooth transitions for all theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Override for elements that shouldn't transition */
+img,
+svg,
+video,
+iframe {
+  transition: none;
+}
+

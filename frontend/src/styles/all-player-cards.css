@@ -1,0 +1,381 @@
+.all-player-cards-container {
+  min-height: calc(100vh - 72px);
+  background: #f9fafb;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.all-player-cards-loading,
+.all-player-cards-error {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #6b7280;
+}
+
+.all-player-cards-loading p,
+.all-player-cards-error p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.all-player-cards-header {
+  margin-bottom: 0;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.2;
+}
+
+.all-player-cards-header .btn-back {
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  color: #374151;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.all-player-cards-header .btn-back:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.all-player-cards-header .header-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.all-player-cards-header h1,
+.tournament-name-header {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937 !important;
+  line-height: 1.2;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.design-saved-info {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.all-player-cards-header .header-stats {
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.all-player-cards-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #6b7280;
+}
+
+.all-player-cards-empty p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.all-player-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  align-items: start;
+  overflow: visible;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Scaler wrapper that properly handles the scale transform */
+/* Card is 600x800, scaled to 0.5 = 300x400, but we need extra space for shadows/borders */
+/* Increased size to ensure full visibility at 100% zoom */
+.player-card-scaler {
+  width: 100%;
+  max-width: 330px;
+  height: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  position: relative;
+  margin: 0 auto;
+  /* Ensure no clipping - give extra space for shadows and rendering differences */
+  min-width: 0;
+  min-height: 430px;
+  box-sizing: border-box;
+}
+
+/* When previewMode is true, PlayerCardCanvas returns canvas directly without container */
+/* Scale the card to fit in the grid - scale from center so it's properly centered */
+.player-card-scaler > .player-card-canvas {
+  width: 600px !important;
+  height: 800px !important;
+  transform: scale(0.5) !important;
+  transform-origin: center center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+  /* Ensure card is fully visible */
+  position: relative;
+  z-index: 1;
+}
+
+/* If container exists (shouldn't in preview mode, but just in case) */
+.player-card-scaler .player-card-canvas-container {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: visible;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+.player-card-scaler .player-card-canvas-container .player-card-canvas {
+  width: 600px !important;
+  height: 800px !important;
+  transform: scale(1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 16px;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-generate-pdf {
+  padding: 10px 24px;
+  background: #10b981;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.btn-generate-pdf:hover:not(:disabled) {
+  background: #059669;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-generate-pdf:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-generate-pdf:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+.btn-generate-pdf::before {
+  content: '📄';
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+  .all-player-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .player-card-scaler {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .all-player-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .player-card-scaler {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-player-cards-container {
+    padding: 0;
+  }
+
+  .all-player-cards-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .all-player-cards-header .header-content {
+    width: 100%;
+  }
+
+  .all-player-cards-header .header-stats {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-generate-pdf {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .all-player-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .player-card-scaler {
+    max-width: 250px;
+    height: 333px;
+    min-height: 333px;
+  }
+
+  .player-card-scaler > .player-card-canvas {
+    transform: scale(0.42) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .all-player-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .player-card-scaler {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 280px;
+    max-height: 450px;
+  }
+
+  .player-card-scaler > .player-card-canvas {
+    transform: scale(0.35) !important;
+    width: 600px !important;
+    height: 800px !important;
+  }
+}
+
+/* Footer Styles */
+.all-player-cards-footer {
+  margin-top: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.footer-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.all-player-cards-footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+

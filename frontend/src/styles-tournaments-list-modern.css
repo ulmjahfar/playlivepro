@@ -1,0 +1,285 @@
+/* Tournaments List - Modern Dark Theme */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    /* Core Backgrounds - Matching the Creation Page */
+    --tl-bg-base: #0f172a;
+    --tl-bg-surface: #1e293b;
+    --tl-bg-card: rgba(30, 41, 59, 0.7);
+    --tl-bg-glass: rgba(15, 23, 42, 0.85);
+
+    /* Accents */
+    --tl-accent-primary: #8b5cf6;
+    /* Violet */
+    --tl-accent-secondary: #06b6d4;
+    /* Cyan */
+    --tl-accent-tertiary: #f43f5e;
+    /* Rose */
+
+    /* Text */
+    --tl-text-primary: #f8fafc;
+    --tl-text-secondary: #94a3b8;
+    --tl-text-muted: #64748b;
+
+    /* Borders */
+    --tl-border-subtle: rgba(148, 163, 184, 0.1);
+    --tl-border-focus: rgba(139, 92, 246, 0.5);
+
+    /* Gradients */
+    --tl-gradient-hero: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+    --tl-gradient-card: linear-gradient(165deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    --tl-gradient-text: linear-gradient(to right, #ffffff, #94a3b8);
+
+    /* Misc */
+    --tl-radius-lg: 16px;
+    --tl-radius-md: 12px;
+    --tl-shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Page Container Overrides */
+.tournaments-page-v2 {
+    background: var(--tl-bg-base) !important;
+    color: var(--tl-text-primary);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.tx-hero {
+    background: transparent;
+    padding: 40px 0;
+    position: relative;
+}
+
+.tx-hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--tl-gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.tx-hero-subtitle {
+    color: var(--tl-text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Stats Cards */
+.tx-stat-card {
+    background: var(--tl-bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--tl-border-subtle);
+    border-radius: var(--tl-radius-md);
+    padding: 20px;
+    color: var(--tl-text-primary);
+}
+
+.tx-stat-value {
+    color: var(--tl-text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.tx-stat-label {
+    color: var(--tl-text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+/* Command Bar */
+.tx-command-bar {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--tl-border-subtle);
+    border-radius: var(--tl-radius-lg);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.tx-search-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--tl-border-subtle);
+    color: var(--tl-text-primary);
+    border-radius: 8px;
+}
+
+.tx-search-input:focus {
+    border-color: var(--tl-accent-primary);
+    outline: none;
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.tx-filter-select {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--tl-border-subtle);
+    color: var(--tl-text-secondary);
+    border-radius: 8px;
+}
+
+/* Tournament Grid */
+.tx-tournament-card {
+    background: var(--tl-bg-card);
+    border: 1px solid var(--tl-border-subtle);
+    border-radius: var(--tl-radius-lg);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.tx-tournament-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--tl-shadow-lg);
+    border-color: var(--tl-accent-primary);
+}
+
+.tx-card-visual {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 1) 100%);
+    border-bottom: 1px solid var(--tl-border-subtle);
+}
+
+.tx-card-name {
+    color: var(--tl-text-primary);
+    font-weight: 700;
+}
+
+.tx-card-code {
+    color: var(--tl-accent-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(6, 182, 212, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Status Badges */
+.tx-card-status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.tx-card-status--active {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.tx-card-status--upcoming {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.tx-card-status--completed {
+    background: rgba(148, 163, 184, 0.15);
+    color: #cbd5e1;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+/* Buttons */
+.tx-btn {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.tx-btn--primary {
+    background: linear-gradient(135deg, var(--tl-accent-primary) 0%, #7c3aed 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.tx-btn--primary:hover {
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.tx-btn--secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--tl-text-primary);
+    border: 1px solid var(--tl-border-subtle);
+}
+
+.tx-btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--tl-text-secondary);
+}
+
+.tx-btn--ghost {
+    color: var(--tl-text-secondary);
+    background: transparent;
+}
+
+.tx-btn--ghost:hover {
+    color: var(--tl-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Pagination */
+.pagination-btn {
+    background: var(--tl-bg-card);
+    border: 1px solid var(--tl-border-subtle);
+    color: var(--tl-text-secondary);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: var(--tl-accent-primary);
+    color: var(--tl-accent-primary);
+}
+
+.pagination-info {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--tl-accent-primary);
+}
+
+/* Empty State */
+.tournaments-empty-state {
+    background: rgba(30, 41, 59, 0.3);
+    border: 2px dashed var(--tl-border-subtle);
+    color: var(--tl-text-muted);
+}
+
+.tournaments-empty-state h3 {
+    color: var(--tl-text-primary);
+}
+
+/* Analytics Strip */
+.tx-metric-tile {
+    background: var(--tl-bg-card);
+    border: 1px solid var(--tl-border-subtle);
+    color: var(--tl-text-primary);
+}
+
+.tx-metric-number {
+    color: var(--tl-text-primary);
+}
+
+.tx-metric-label {
+    color: var(--tl-text-secondary);
+}
+
+/* Table View Overrides for Dark Mode */
+.tournaments-table-wrapper table {
+    color: var(--tl-text-primary);
+}
+
+.tournaments-table-wrapper th {
+    background: rgba(30, 41, 59, 0.8);
+    color: var(--tl-text-secondary);
+    border-bottom: 1px solid var(--tl-border-subtle);
+}
+
+.tournaments-table-wrapper td {
+    border-bottom: 1px solid var(--tl-border-subtle);
+    color: var(--tl-text-primary);
+}
+
+.tournaments-table-wrapper tr:hover td {
+    background: rgba(30, 41, 59, 0.5);
+}

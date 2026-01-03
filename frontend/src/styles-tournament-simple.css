@@ -1,0 +1,550 @@
+/* Simple Tournament Pages Design - No Modern Look */
+
+/* Reset and Base Styles */
+.simple-tournament-page {
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+}
+
+/* Simple Header */
+.simple-header {
+  background: #f5f5f5;
+  border: 1px solid #cccccc;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}
+
+.simple-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.simple-header p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+/* Simple Cards/Sections */
+.simple-section {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.simple-section h2 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 5px;
+}
+
+.simple-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.simple-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Simple Tables */
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.simple-table th {
+  background: #f5f5f5;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.simple-table td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.simple-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Simple Forms */
+.simple-form {
+  margin: 15px 0;
+}
+
+.simple-form-group {
+  margin-bottom: 15px;
+}
+
+.simple-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000000;
+}
+
+.simple-form-group input,
+.simple-form-group select,
+.simple-form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #000000;
+}
+
+.simple-form-group input:focus,
+.simple-form-group select:focus,
+.simple-form-group textarea:focus {
+  outline: none;
+  border-color: #666666;
+}
+
+/* Simple Buttons */
+.simple-btn {
+  padding: 8px 16px;
+  border: 1px solid #666666;
+  background: #ffffff;
+  color: #000000;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.simple-btn:hover {
+  background: #f5f5f5;
+}
+
+.simple-btn-primary {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.simple-btn-primary:hover {
+  background: #333333;
+}
+
+.simple-btn-danger {
+  background: #ffffff;
+  color: #cc0000;
+  border-color: #cc0000;
+}
+
+.simple-btn-danger:hover {
+  background: #ffeeee;
+}
+
+/* Simple Lists */
+.simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.simple-list li {
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.simple-list li:last-child {
+  border-bottom: none;
+}
+
+/* Simple Grid */
+.simple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.simple-grid-item {
+  border: 1px solid #cccccc;
+  padding: 15px;
+  background: #ffffff;
+}
+
+/* Simple Metrics/Stats */
+.simple-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.simple-metric {
+  border: 1px solid #cccccc;
+  padding: 15px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.simple-metric-label {
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+.simple-metric-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Simple Status Badge */
+.simple-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  color: #000000;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.simple-badge-active {
+  background: #ffffff;
+  color: #006600;
+  border-color: #006600;
+}
+
+.simple-badge-inactive {
+  background: #ffffff;
+  color: #666666;
+  border-color: #666666;
+}
+
+/* Simple Links */
+.simple-link {
+  color: #0000cc;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.simple-link:hover {
+  color: #000099;
+}
+
+/* Simple Search/Filter */
+.simple-search {
+  margin: 15px 0;
+}
+
+.simple-search input {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+}
+
+.simple-filters {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.simple-filters select {
+  padding: 8px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+/* Simple Pagination */
+.simple-pagination {
+  display: flex;
+  gap: 5px;
+  margin: 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.simple-pagination button {
+  padding: 6px 12px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.simple-pagination button:hover {
+  background: #f5f5f5;
+}
+
+.simple-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.simple-pagination span {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* Simple Modal/Dialog */
+.simple-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.simple-modal-content {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.simple-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.simple-modal-header h3 {
+  margin: 0;
+}
+
+.simple-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000000;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.simple-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #cccccc;
+}
+
+/* Simple Empty State */
+.simple-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666666;
+}
+
+.simple-empty h3 {
+  margin: 0 0 10px 0;
+  color: #000000;
+}
+
+/* Simple Loading */
+.simple-loading {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666666;
+}
+
+/* Global simple styles - override modern design */
+.tournaments-admin-page,
+.players-admin,
+.teams-admin {
+  font-family: Arial, sans-serif !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Remove all gradients, shadows, animations globally */
+.tournaments-admin-page *,
+.players-admin *,
+.teams-admin * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  animation: none !important;
+  transition: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+/* Override modern card styles */
+.surface-card,
+.snapshot-card,
+.hero-stat-card,
+.metric-tile {
+  background: #ffffff !important;
+  border: 1px solid #cccccc !important;
+  padding: 15px !important;
+  margin-bottom: 15px !important;
+  box-shadow: none !important;
+}
+
+/* Simple headers */
+.tournaments-admin-hero,
+.players-hero,
+.teams-hero {
+  background: #f5f5f5 !important;
+  border: 1px solid #cccccc !important;
+  padding: 15px 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.tournaments-admin-hero h1,
+.players-hero h1,
+.teams-hero h1 {
+  margin: 0 !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+/* Simple buttons */
+.admin-btn,
+.hero-btn,
+.simple-btn {
+  padding: 8px 16px !important;
+  border: 1px solid #666666 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  margin-right: 10px !important;
+  margin-bottom: 10px !important;
+  box-shadow: none !important;
+}
+
+.admin-btn:hover,
+.hero-btn:hover {
+  background: #f5f5f5 !important;
+}
+
+.admin-btn.primary,
+.hero-btn--primary {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Simple tables */
+.players-table,
+.players-table-card {
+  border: 1px solid #cccccc !important;
+  background: #ffffff !important;
+}
+
+.players-table th {
+  background: #f5f5f5 !important;
+  border: 1px solid #cccccc !important;
+  padding: 10px !important;
+  font-weight: bold !important;
+}
+
+.players-table td {
+  border: 1px solid #cccccc !important;
+  padding: 10px !important;
+}
+
+.players-table tr:nth-child(even) {
+  background: #f9f9f9 !important;
+}
+
+/* Override any modern styles */
+[class*="gradient"],
+[style*="gradient"] {
+  background: #ffffff !important;
+}
+
+[class*="shadow"],
+[style*="shadow"] {
+  box-shadow: none !important;
+}
+
+[class*="glow"],
+[style*="glow"] {
+  filter: none !important;
+}
+
+/* Utility Classes */
+.simple-text-center {
+  text-align: center;
+}
+
+.simple-text-right {
+  text-align: right;
+}
+
+.simple-mt {
+  margin-top: 15px;
+}
+
+.simple-mb {
+  margin-bottom: 15px;
+}
+
+.simple-ml {
+  margin-left: 15px;
+}
+
+.simple-mr {
+  margin-right: 15px;
+}
+
+.simple-pt {
+  padding-top: 15px;
+}
+
+.simple-pb {
+  padding-bottom: 15px;
+}
+
+.simple-pl {
+  padding-left: 15px;
+}
+
+.simple-pr {
+  padding-right: 15px;
+}
+

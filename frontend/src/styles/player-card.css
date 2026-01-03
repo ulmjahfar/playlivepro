@@ -1,0 +1,684 @@
+.player-card-page {
+  min-height: 100vh;
+  padding: 48px 20px 72px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.96));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  color: #f8fafc;
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+.player-card-page__loading {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  color: #e2e8f0;
+}
+
+.player-card-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(148, 163, 184, 0.3);
+  border-top-color: #38bdf8;
+  animation: spinner 1s linear infinite;
+}
+
+.player-card-layout {
+  width: min(960px, 100%);
+  display: grid;
+  gap: 24px;
+}
+
+/* Ensure layout can accommodate 600px width cards */
+.player-card-layout .pl-player-card[data-custom-design="true"] {
+  margin: 0 auto;
+}
+
+.pl-player-card {
+  border-radius: 28px;
+  padding: 36px 40px 24px;
+  position: relative;
+  box-shadow: 0 32px 64px rgba(2, 6, 23, 0.42);
+  overflow: hidden;
+}
+
+/* Custom design support */
+.pl-player-card[data-custom-design="true"] {
+  position: relative;
+  width: 600px;
+  height: 800px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.pl-player-card[data-custom-design="true"] .pl-card__header,
+.pl-player-card[data-custom-design="true"] .pl-card__body,
+.pl-player-card[data-custom-design="true"] .pl-card__tag {
+  position: relative;
+}
+
+.pl-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.pl-card__branding {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.pl-card__logo {
+  width: 84px;
+  height: 84px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.pl-card__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pl-card__logo span {
+  font-size: 40px;
+}
+
+.pl-card__tournament-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  color: rgba(248, 250, 252, 0.68);
+}
+
+.pl-card__branding h1 {
+  margin: 4px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fefcbf;
+  letter-spacing: -0.02em;
+}
+
+.pl-card__subtext {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: rgba(248, 250, 252, 0.65);
+}
+
+.pl-card__badge {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(15, 23, 42, 0.18);
+}
+
+.pl-card__body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pl-card__details {
+  grid-column: span 6;
+  display: flex;
+  align-items: center;
+}
+
+.pl-card__details ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.pl-card__details li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.pl-card__details .detail-icon {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(248, 250, 252, 0.25);
+  align-items: center;
+  justify-content: center;
+}
+
+.pl-card__photo {
+  grid-column: span 6;
+  border-radius: 24px;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  background: rgba(15, 23, 42, 0.25);
+  box-shadow: 0 22px 36px rgba(15, 23, 42, 0.35);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 260px;
+}
+
+.pl-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pl-card__photo-placeholder {
+  text-align: center;
+  color: rgba(248, 250, 252, 0.7);
+  font-size: 16px;
+  display: grid;
+  gap: 6px;
+  place-items: center;
+}
+
+.pl-card__photo-placeholder span {
+  font-size: 38px;
+}
+
+.pl-card__tag {
+  margin-top: 32px;
+  border-radius: 16px;
+  padding: 18px 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #111827;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+}
+
+.pl-card__tag-name {
+  font-size: 20px;
+  letter-spacing: 0.12em;
+}
+
+.pl-card__tag-id {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pl-card__tag-id strong {
+  font-size: 18px;
+}
+
+.player-card-actions {
+  width: min(960px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.player-card-action {
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.player-card-action.primary {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #f8fafc;
+  box-shadow: 0 20px 36px rgba(37, 99, 235, 0.32);
+}
+
+.player-card-action.primary-outline {
+  background: rgba(37, 99, 235, 0.1);
+  color: #bfdbfe;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+}
+
+.player-card-action.whatsapp {
+  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  color: #022c22;
+  box-shadow: 0 20px 36px rgba(16, 185, 129, 0.3);
+}
+
+.player-card-action.ghost {
+  background: rgba(15, 23, 42, 0.45);
+  color: rgba(226, 232, 240, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.2);
+}
+
+.player-card-action:hover {
+  transform: translateY(-2px);
+}
+
+.player-card-action:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+}
+
+.player-card-metadata {
+  width: min(960px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 18px;
+  padding: 18px 22px;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.player-card-metadata span {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.6);
+}
+
+.player-card-metadata strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 18px;
+  color: #f8fafc;
+}
+
+@media (max-width: 900px) {
+  .pl-card__body {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .pl-card__details,
+  .pl-card__photo {
+    grid-column: auto;
+  }
+
+  .pl-card__details ul {
+    gap: 12px;
+  }
+
+  .pl-card__details li {
+    font-size: 16px;
+  }
+
+  .pl-card__photo {
+    min-height: 220px;
+  }
+
+  .pl-card__tag {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .player-card-page {
+    padding: 32px 16px 56px;
+  }
+
+  .pl-player-card {
+    padding: 26px 24px 20px;
+    border-radius: 22px;
+  }
+
+  .pl-card__branding {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pl-card__logo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .pl-card__badge {
+    width: 100%;
+    text-align: center;
+  }
+
+  .player-card-actions {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Player Card Design for Modal */
+.pl-player-card--enhanced {
+  padding: 4px 8px 4px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pl-card__header-enhanced {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.pl-card__success-message {
+  margin-bottom: 2px;
+  margin-top: 0;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.pl-card__success-message p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.pl-card__success-message strong {
+  color: #facc15;
+  font-weight: 600;
+}
+
+.pl-card__logo-enhanced {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pl-card__logo-enhanced img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.pl-card__logo-enhanced span {
+  font-size: 42px;
+}
+
+.pl-card__tournament-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pl-card__tournament-label-enhanced {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  color: rgba(248, 250, 252, 0.5);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.pl-card__tournament-name {
+  margin: 0 0 6px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pl-card__tournament-code {
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  color: rgba(248, 250, 252, 0.6);
+  font-weight: 500;
+}
+
+.pl-card__powered-by {
+  margin-top: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.pl-card__powered-by span {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 2px solid;
+  background: rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.pl-card__body-enhanced {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+  align-items: center;
+}
+
+.pl-card__details-enhanced {
+  display: flex;
+  align-items: center;
+}
+
+.pl-card__details-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  width: 100%;
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pl-card__details-content span {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pl-card__player-name {
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.pl-card__details-separator {
+  color: rgba(248, 250, 252, 0.5);
+  font-weight: 400;
+}
+
+.pl-card__details-enhanced .detail-icon-enhanced {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.pl-card__photo-enhanced {
+  position: relative;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  background: rgba(15, 23, 42, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 240px;
+  aspect-ratio: 3/4;
+}
+
+.pl-card__photo-enhanced img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pl-card__photo-number {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 72px;
+  font-weight: 900;
+  color: #000;
+  text-shadow: 
+    2px 2px 0 rgba(255, 255, 255, 0.8),
+    -2px -2px 0 rgba(255, 255, 255, 0.8),
+    2px -2px 0 rgba(255, 255, 255, 0.8),
+    -2px 2px 0 rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  z-index: 2;
+  letter-spacing: -0.05em;
+}
+
+.pl-card__tag-enhanced {
+  margin-top: 0;
+  border-radius: 16px;
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+
+.pl-card__tag-name-enhanced {
+  font-size: 22px;
+  letter-spacing: 0.15em;
+  font-weight: 900;
+}
+
+.pl-card__tag-id-enhanced {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.pl-card__tag-id-enhanced strong {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Responsive adjustments for enhanced card */
+@media (max-width: 900px) {
+  .pl-card__body-enhanced {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pl-card__photo-enhanced {
+    min-height: 200px;
+    order: -1;
+  }
+
+  .pl-card__photo-number {
+    font-size: 56px;
+  }
+
+  .pl-card__tag-enhanced {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .pl-player-card--enhanced {
+    padding: 24px 20px 16px;
+  }
+
+  .pl-card__header-enhanced {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pl-card__logo-enhanced {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pl-card__tournament-name {
+    font-size: 26px;
+  }
+
+  .pl-card__details-enhanced li {
+    font-size: 16px;
+  }
+
+  .pl-card__photo-enhanced {
+    min-height: 200px;
+  }
+
+  .pl-card__photo-number {
+    font-size: 48px;
+    bottom: 12px;
+  }
+
+  .pl-card__tag-enhanced {
+    padding: 16px 20px;
+  }
+
+  .pl-card__tag-name-enhanced {
+    font-size: 18px;
+  }
+}
+

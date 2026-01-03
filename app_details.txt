@@ -1,0 +1,195 @@
+# Tournament Management App - Complete Details
+
+## Overview
+This is a full-stack tournament management application built for managing sports tournaments, particularly cricket, football, volleyball, and basketball. It includes features for tournament creation, player and team registration, live auctions, reporting, finance management, and real-time notifications. The app supports multiple user roles: SuperAdmin, TournamentAdmin, and Player.
+
+- **Backend:** Node.js with Express, MongoDB for database, Socket.io for real-time features.
+- **Frontend:** React application with modern UI components, charts, and image handling.
+- **Key Features:** Tournament setup, player/team registration, auction system with bidding, reports, notifications, finance tracking.
+
+## Backend Details
+- **Technology Stack:** Node.js, Express.js, MongoDB (Mongoose), Socket.io, JWT for authentication.
+- **Server Setup:** Runs on port 5000 (or from env), connects to MongoDB. Includes CORS, static file serving for uploads (logos, photos, etc.), and serves React build.
+- **Real-time Features:** Socket.io for live auctions, bidding updates, and notifications.
+- **Security:** JWT authentication for API and sockets, bcrypt for password hashing.
+- **File Handling:** Multer for uploads, Sharp for image processing, PDFKit for reports.
+- **Other:** Rate limiting, cron jobs, email (Nodemailer), WhatsApp integration.
+
+## Frontend Details
+- **Technology Stack:** React 18, React Router for navigation, Axios for API calls, Socket.io-client for real-time.
+- **UI Libraries:** Framer Motion for animations, React Toastify for notifications, Chart.js/Recharts for analytics.
+- **Image Handling:** Browser Image Compression, React Dropzone, React Image Crop, Smart Image Uploader.
+- **Internationalization:** i18next for multi-language support.
+- **Other:** HTML2PDF.js for PDF generation, React Confetti for celebrations.
+
+## Database Models
+
+### Tournament Model
+- **Fields:**
+  - name: String (required)
+  - code: String (required, unique)
+  - sport: Enum ['Cricket', 'Football', 'Volleyball', 'Basketball'] (required)
+  - startDate: Date
+  - endDate: Date
+  - location: String
+  - status: Enum ['Upcoming', 'Active', 'Completed'] (default: 'Upcoming')
+  - adminId: ObjectId (ref: 'User') - TournamentAdmin
+  - basePrice: Number (default: 1000)
+  - maxPlayers: Number (default: 50)
+  - auctionRules: Object
+    - type: Enum ['slab', 'straight'] (default: 'slab')
+    - fixedIncrement: Number (default: 100) - For straight
+    - ranges: Array of {from, to, increment} - For slab
+    - bidLimitMode: Enum ['limit', 'unlimited'] (default: 'limit')
+    - bidLimitCount: Number (default: 5 when mode is 'limit')
+    - maxBidsPerPlayer: Number (legacy mirror of bidLimitCount for compatibility)
+    - baseValueOfPlayer: Number (default: 0)
+    - maxFundForTeam: Number (default: 0)
+  - participatingTeams: Number (min: 2, max: 100, default: 8)
+  - minPlayers: Number (default: 11) - Per team
+  - maxPlayers: Number (default: 16) - Per team
+  - playerRegistrationEnabled: Boolean (default: false)
+  - registrationStartDate: Date
+  - registrationEndDate: Date
+  - registrationLink: String
+  - registrationStatus: Enum ['Not Started', 'Active', 'Closed', 'Closed Early'] (default: 'Not Started')
+  - teamRegistrationLink: String
+  - teamRegistrationEnabled: Boolean (default: false)
+  - adminUsername: String - Auto-generated
+  - adminPasswordHash: String - Hashed
+  - logo: String - Path to logo
+  - createdBy: String
+  - createdAt: Date (default: now)
+- **Indexes:** adminId, createdAt, status
+
+### Player Model
+- **Fields:**
+  - playerId: String (required, unique)
+  - name: String (required)
+  - mobile: String (required)
+  - city: String
+  - role: String
+  - tournamentCode: String (required)
+  - photo: String - Path
+  - receipt: String - Path
+  - remarks: String
+  - basePrice: Number (default: 1000)
+  - currentBid: Number (default: 0)
+  - soldPrice: Number
+  - soldTo: ObjectId (ref: 'User') - Buyer
+  - auctionStatus: Enum ['Available', 'Sold', 'Unsold'] (default: 'Available')
+  - bidHistory: Array of {bidder: ObjectId (ref: 'User'), bidAmount: Number, bidTime: Date}
+  - registeredAt: Date (default: now)
+
+### Team Model
+- **Fields:**
+  - teamId: String (required, unique) - e.g., KPL2026-T001
+  - name: String (required, uppercase, min 3 chars)
+  - logo: String - Path
+  - captainName: String (required)
+  - mobile: String (required)
+  - email: String (required)
+  - city: String (required)
+  - numberOfPlayers: Number (required)
+  - guestPlayers: Array of {name, role, photo}
+  - teamIcons: Array of Strings - e.g., ['⚽', '🏆']
+  - tournamentCode: String (required)
+  - budget: Number (default: 0)
+  - createdAt: Date (default: now)
+- **Indexes:** tournamentCode, createdAt
+
+### User Model
+- **Fields:**
+  - username: String (required, unique)
+  - email: String (required, unique)
+  - password: String (required) - Hashed
+  - plainPassword: String - For TournamentAdmin
+  - role: Enum ['SuperAdmin', 'TournamentAdmin', 'Player'] (required)
+  - tournamentId: ObjectId (ref: 'Tournament') - For TournamentAdmin
+  - name: String - Full name
+  - mobile: String
+  - status: Enum ['Active', 'Disabled', 'Pending', 'Suspended'] (default: 'Active')
+  - resetToken: String
+  - resetTokenExpiry: Date
+  - otp: String
+  - otpExpiry: Date
+  - createdAt: Date (default: now)
+- **Methods:** comparePassword (bcrypt)
+
+## API Routes
+- /api/auth - Authentication routes
+- /api/users - User management
+- /api/tournaments - Tournament CRUD
+- /api/players - Player management
+- /api/teams - Team management
+- /api/auctions - Auction operations (with Socket.io)
+- /api/player-cards - Player card generation
+- /api/reports - Reporting
+- /api/notifications - Notifications
+- /api/finance - Finance tracking
+
+Static routes for uploads: /uploads, /player_cards, /confirmations, /uploads/players, /uploads/teams, /uploads/team_logos, /uploads/guest_photos, /uploads/tournament_logos
+
+## Dependencies
+
+### Backend (package.json)
+- archiver: ^7.0.1
+- bcrypt: ^6.0.0
+- bcryptjs: ^3.0.2
+- cors: ^2.8.5
+- dotenv: ^17.2.3
+- exceljs: ^4.4.0
+- express: ^5.1.0
+- express-rate-limit: ^7.1.5
+- mongoose: ^8.19.2
+- multer: ^1.4.5-lts.1
+- node-cron: ^4.2.1
+- nodemailer: ^7.0.10
+- pdf2pic: ^3.2.0
+- pdfkit: ^0.15.2
+- sharp: ^0.34.4
+- unzipper: ^0.12.3
+- whatsapp-web.js: ^1.34.1
+
+### Frontend (package.json)
+- @testing-library/dom: ^10.4.1
+- @testing-library/jest-dom: ^6.9.1
+- @testing-library/react: ^16.3.0
+- @testing-library/user-event: ^13.5.0
+- axios: ^1.7.7
+- browser-image-compression: ^2.0.2
+- chart.js: ^4.5.1
+- framer-motion: ^12.23.24
+- html2pdf.js: ^0.10.1
+- i18next: ^25.6.0
+- jspdf: ^3.0.3
+- jwt-decode: ^4.0.0
+- react: ^18.2.0
+- react-chartjs-2: ^5.3.1
+- react-confetti: ^6.4.0
+- react-dom: ^18.2.0
+- react-dropzone: ^14.3.8
+- react-i18next: ^16.1.6
+- react-image-crop: ^11.0.10
+- react-router-dom: ^6.26.1
+- react-scripts: 5.0.1
+- react-toastify: ^11.0.5
+- recharts: ^3.3.0
+- socket.io-client: ^4.8.1
+- web-vitals: ^2.1.4
+
+## Features Summary
+- **Tournament Management:** Create, edit, view tournaments with details like sport, dates, location, auction rules.
+- **Registration:** Player and team registration with links, photo uploads, receipts.
+- **Auction System:** Live auctions with bidding, rules (slab/straight), real-time updates via Socket.io.
+- **User Roles:** SuperAdmin (full access), TournamentAdmin (per tournament), Player (bidding).
+- **Reports:** Generate reports in PDF/Excel, analytics with charts.
+- **Finance:** Track budgets, funds, transactions.
+- **Notifications:** Email, WhatsApp, in-app notifications.
+- **Image Handling:** Upload, crop, compress logos, photos.
+- **Real-time:** Auctions, bids, notifications.
+- **Security:** JWT, OTP, password reset.
+- **Multi-language:** i18n support.
+- **Responsive UI:** Modern React components.
+
+This document includes all static details from the codebase. Dynamic data (e.g., actual tournaments, users) is stored in MongoDB and not included here.

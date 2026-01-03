@@ -1,0 +1,258 @@
+/* Modern Tournament Create Page - Rich Aesthetic
+   Extends and adapts the core dark theme for full page usage
+*/
+
+/* Page Container - Dark Theme Background */
+.super-admin-dashboard {
+    background-color: #0f172a;
+    /* Match the dark theme base */
+    min-height: 100vh;
+}
+
+/* Header Re-styling */
+.simple-header {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 20px 40px !important;
+}
+
+.simple-header h1 {
+    color: #f1f5f9 !important;
+    font-size: 28px !important;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #bdcccf !important;
+    border-radius: 12px !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateX(-2px);
+    color: #ffffff !important;
+}
+
+/* Main Content Area */
+.simple-main-content {
+    background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(15, 23, 42, 0) 50%),
+        #0f172a !important;
+    /* gradient glow on dark bg */
+    padding: 40px !important;
+}
+
+.simple-form-wrapper {
+    background: transparent !important;
+    /* Let the cards flow */
+    box-shadow: none !important;
+    max-width: 1400px !important;
+    margin: 0 auto;
+}
+
+/* 
+   Override the core TournamentCreate styles to adapt from Modal to Page
+   We retain the "rich" visual styles (gradients, borders) but adjust positioning 
+*/
+
+.tournament-create-page .tournament-create-shell {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-height: none !important;
+}
+
+.tournament-create-page .create-header {
+    display: none !important;
+    /* Hide internal modal header since we have page header */
+}
+
+.tournament-create-page .create-main {
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+.tournament-create-page .form-container {
+    padding: 0 !important;
+    gap: 32px !important;
+}
+
+/* Card Styling (Form Sections) */
+.tournament-create-page .form-section {
+    /* Enforce the rich card style */
+    background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.tournament-create-page .section-header {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 24px 32px !important;
+}
+
+.tournament-create-page .section-header h2 {
+    color: #f8fafc !important;
+    font-size: 20px !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tournament-create-page .section-header h2::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(to bottom, #6366f1, #a855f7);
+    border-radius: 4px;
+}
+
+.tournament-create-page .section-body {
+    padding: 32px !important;
+    background: transparent !important;
+}
+
+/* Inputs & Form Elements - ensure they look "rich" */
+.tournament-create-page .field label {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 500 !important;
+}
+
+.tournament-create-page .field input,
+.tournament-create-page .field select,
+.tournament-create-page .field textarea {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #f1f5f9 !important;
+    border-radius: 12px !important;
+    padding: 14px 16px !important;
+    font-size: 15px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.tournament-create-page .field input:focus,
+.tournament-create-page .field select:focus,
+.tournament-create-page .field textarea:focus {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15) !important;
+    transform: translateY(-1px);
+}
+
+/* Plan Selection Cards - Enhance specifically */
+.tournament-create-page .plan-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* Force side-by-side on large screens */
+    gap: 24px !important;
+}
+
+.tournament-create-page .plan-card {
+    background: rgba(30, 41, 59, 0.4) !important;
+    border: 2px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 32px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.tournament-create-page .plan-card:hover {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-4px);
+}
+
+.tournament-create-page .plan-card.selected {
+    background: linear-gradient(145deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%) !important;
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15) !important;
+}
+
+.tournament-create-page .plan-card-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    color: #f8fafc !important;
+}
+
+.tournament-create-page .plan-card-description {
+    color: #94a3b8 !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Action Bar at Bottom */
+.create-main-footer {
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(16px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 24px 40px !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2) !important;
+    z-index: 50;
+}
+
+/* Buttons */
+.tournament-create-page .btn-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    border: none !important;
+    padding: 14px 32px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tournament-create-page .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4) !important;
+    filter: brightness(1.1);
+}
+
+.tournament-create-page .btn-secondary {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #cbd5e1 !important;
+    border-radius: 14px !important;
+}
+
+.tournament-create-page .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #f8fafc !important;
+    color: #f8fafc !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .simple-header {
+        padding: 16px 20px !important;
+    }
+
+    .simple-main-content {
+        padding: 20px !important;
+    }
+
+    .tournament-create-page .plan-cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

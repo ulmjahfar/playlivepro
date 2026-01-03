@@ -1,0 +1,5199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+  --report-primary-start: #0d47a1;
+  --report-primary-end: #512da8;
+  --report-gold: #f9a825;
+  --report-text: #1f2937;
+  --report-muted: #6b7280;
+  --report-border: rgba(15, 23, 42, 0.08);
+  --report-card-shadow: 0 12px 25px -12px rgba(15, 23, 42, 0.25);
+  --report-font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --report-font-body: 'Inter', 'Segoe UI', sans-serif;
+  --auction-bg: #fdf8f3;
+  --auction-panel: #fffdf8;
+  --auction-ink: #2f241b;
+  --auction-muted: #8a7a6a;
+  --auction-border: rgba(82, 64, 51, 0.18);
+  --auction-accent: #c97f4f;
+  --auction-accent-soft: #f2d6bd;
+  --auction-pill: rgba(201, 127, 79, 0.12);
+}
+
+.report-container {
+  min-height: 100vh;
+  background: transparent !important;
+  padding: 32px 24px 60px;
+  box-sizing: border-box;
+  color: var(--report-text);
+  font-family: var(--report-font-body);
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.report-toolbar {
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.report-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: white;
+  border: 1px solid var(--report-border);
+  border-radius: 999px;
+  color: var(--report-text);
+  font-weight: 500;
+  font-family: var(--report-font-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 12px -8px rgba(15, 23, 42, 0.4);
+}
+
+.report-toolbar button:hover {
+  transform: translateY(-1px);
+  border-color: var(--report-primary-end);
+  color: var(--report-primary-end);
+}
+
+.report-document {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible;
+  padding: 0;
+  border: none !important;
+}
+
+.report-page {
+  position: relative;
+  padding: 48px 52px 56px;
+  min-height: 297mm;
+  box-sizing: border-box;
+  background: white;
+}
+
+.report-summary-page {
+  background: linear-gradient(180deg, rgba(13, 71, 161, 0.02) 0%, rgba(81, 45, 168, 0.04) 100%);
+}
+
+.report-hero {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.report-hero-logo,
+.report-hero-logo-fallback {
+  width: 116px;
+  height: 116px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(81, 45, 168, 0.18));
+  box-shadow: 0 14px 30px -20px rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.report-hero-logo img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 22px;
+  background: #fff;
+  padding: 10px;
+}
+
+.report-hero-copy h1 {
+  font-family: var(--report-font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 6px;
+}
+
+.report-hero-copy p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--report-muted);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.report-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.08);
+  margin-bottom: 32px;
+}
+
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.report-card {
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 28px 32px;
+  box-shadow: none !important;
+  page-break-inside: avoid;
+}
+
+.report-card h2 {
+  margin: 0 0 20px;
+  font-family: var(--report-font-heading);
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--report-primary-start);
+}
+
+.report-details-list {
+  display: grid;
+  gap: 16px;
+}
+
+.report-details-list div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.report-details-list dt {
+  font-family: var(--report-font-heading);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--report-muted);
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.report-details-list dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--report-text);
+}
+
+.report-teams-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+
+.report-team-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.report-team-pill-logo {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: rgba(13, 71, 161, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(81, 45, 168, 0.14);
+  padding: 10px;
+}
+
+.report-team-pill-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.report-team-pill-fallback {
+  width: 92px;
+  height: 92px;
+  border-radius: 18px;
+  background: rgba(13, 71, 161, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  color: var(--report-primary-end);
+}
+
+.report-team-pill-name {
+  font-family: var(--report-font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--report-text);
+}
+
+.report-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 32px;
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 16px;
+  color: var(--report-muted);
+}
+
+.report-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(55, 65, 81, 0.8);
+  font-family: var(--report-font-heading);
+}
+
+.report-footer-line {
+  height: 1px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.08);
+  margin: 0 0 12px;
+}
+
+.report-players-page {
+  background: white;
+}
+
+.report-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.report-section-heading h2 {
+  margin: 0;
+  font-family: var(--report-font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--report-primary-start);
+}
+
+.report-section-heading span {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--report-muted);
+  text-transform: uppercase;
+}
+
+.report-players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.report-player-card {
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 16px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-height: 176px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -webkit-region-break-inside: avoid;
+  box-shadow: 0 16px 24px -30px rgba(15, 23, 42, 0.7);
+}
+
+.report-player-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(13, 71, 161, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(81, 45, 168, 0.15);
+}
+
+.report-player-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.report-player-initials {
+  font-family: var(--report-font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--report-primary-end);
+  letter-spacing: 0.05em;
+}
+
+.report-player-body h4 {
+  font-family: var(--report-font-heading);
+  font-size: 14px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--report-text);
+}
+
+.report-player-body p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--report-muted);
+  letter-spacing: 0.02em;
+}
+
+.report-player-id {
+  font-weight: 600;
+  color: var(--report-primary-start);
+}
+
+.report-loading,
+.report-error {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.04), rgba(81, 45, 168, 0.08));
+  font-family: var(--report-font-body);
+}
+
+.report-spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgba(13, 71, 161, 0.2);
+  border-top-color: var(--report-primary-end);
+  animation: report-spin 1s linear infinite;
+}
+
+.report-error button {
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--report-border);
+  background: white;
+  cursor: pointer;
+}
+
+.report-floating-print {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  color: #fff;
+  font-family: var(--report-font-heading);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 32px -24px rgba(13, 71, 161, 0.7);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 100;
+}
+
+.report-floating-print:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 38px -24px rgba(13, 71, 161, 0.75);
+}
+
+.report-floating-print:active {
+  transform: translateY(0);
+  box-shadow: 0 16px 26px -24px rgba(13, 71, 161, 0.7);
+}
+
+.report-empty-state.players {
+  padding: 48px;
+}
+
+@keyframes report-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+  .report-players-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .report-container {
+    padding: 20px 16px 48px;
+  }
+
+  .report-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .report-toolbar button {
+    justify-content: center;
+  }
+
+  .report-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .report-teams-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-details-list div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .report-floating-print {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 720px) {
+  .report-players-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .report-page {
+    padding: 32px 24px 48px;
+  }
+
+  .report-hero-logo,
+  .report-hero-logo-fallback {
+    width: 96px;
+    height: 96px;
+  }
+
+  .report-card {
+    padding: 24px;
+  }
+}
+
+@media print {
+
+  .report-floating-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  .report-container {
+    background: white;
+    padding: 0;
+  }
+
+  .report-toolbar {
+    display: none;
+  }
+
+  .report-document {
+    box-shadow: none;
+    border-radius: 0;
+    max-width: unset;
+    margin: 0;
+  }
+
+  .report-page {
+    min-height: unset;
+    height: auto;
+    padding: 24mm 20mm 20mm;
+  }
+
+  .report-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .report-players-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .report-player-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    -webkit-region-break-inside: avoid;
+  }
+}
+
+/* Analytics Page Styles */
+.analytics-container {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--report-text);
+  font-family: var(--report-font-body);
+}
+
+/* Header Section */
+.analytics-header {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.analytics-header-left {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+}
+
+.analytics-tournament-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: contain;
+  background: rgba(13, 71, 161, 0.08);
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.analytics-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.analytics-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.analytics-tournament-name {
+  margin: 0;
+  font-family: var(--report-font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--report-text);
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.analytics-badge {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--report-font-heading);
+}
+
+.analytics-subtitle {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: var(--report-muted);
+}
+
+.analytics-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 14px;
+}
+
+.analytics-meta-item {
+  color: var(--report-text);
+}
+
+.analytics-meta-item strong {
+  color: var(--report-muted);
+  margin-right: 6px;
+}
+
+.analytics-header-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: white;
+  border: 1px solid var(--report-border);
+  border-radius: 8px;
+  color: var(--report-text);
+  font-weight: 500;
+  font-family: var(--report-font-body);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.btn-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  border-color: var(--report-primary-end);
+}
+
+.btn-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-refresh {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-export-pdf {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-export-excel {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-comprehensive-print {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border-color: transparent;
+}
+
+/* Main Content */
+.analytics-main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.analytics-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.analytics-section-title {
+  margin: 0 0 20px;
+  font-family: var(--report-font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--report-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Statistics Cards */
+.analytics-stats-section {
+  margin-bottom: 24px;
+}
+
+.analytics-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--report-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.stat-card-title {
+  margin: 0;
+  font-family: var(--report-font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--report-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.stat-card-icon {
+  font-size: 24px;
+}
+
+.stat-card-value {
+  font-family: var(--report-font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--report-text);
+  margin-bottom: 8px;
+}
+
+.stat-card-subtitle {
+  font-size: 13px;
+  color: var(--report-muted);
+  margin-top: 8px;
+}
+
+.stat-card-progress {
+  margin-top: 12px;
+}
+
+.stat-card-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(13, 71, 161, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.stat-card-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--report-primary-start), var(--report-primary-end));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.stat-card-progress-text {
+  font-size: 12px;
+  color: var(--report-muted);
+}
+
+/* Timeline */
+.timeline-container {
+  margin-top: 20px;
+}
+
+.timeline-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.timeline-item {
+  background: rgba(13, 71, 161, 0.04);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.timeline-week {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-week-label {
+  font-weight: 600;
+  color: var(--report-text);
+  font-size: 14px;
+}
+
+.timeline-week-date {
+  font-size: 12px;
+  color: var(--report-muted);
+}
+
+.timeline-bar {
+  width: 100%;
+  height: 24px;
+  background: rgba(13, 71, 161, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.timeline-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--report-primary-start), var(--report-primary-end));
+  border-radius: 12px;
+  transition: width 0.3s ease;
+  min-width: 8px;
+}
+
+.timeline-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--report-muted);
+}
+
+.timeline-percentage {
+  font-weight: 600;
+  color: var(--report-primary-start);
+}
+
+/* Top Performers & Team Performance Row */
+.analytics-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.analytics-section-half {
+  margin-bottom: 0;
+}
+
+.performers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.performer-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(13, 71, 161, 0.04);
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.performer-item:hover {
+  background: rgba(13, 71, 161, 0.08);
+}
+
+.performer-rank {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.performer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.performer-name {
+  font-weight: 600;
+  color: var(--report-text);
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.performer-details {
+  font-size: 13px;
+  color: var(--report-muted);
+}
+
+.performer-price {
+  font-weight: 700;
+  color: var(--report-primary-start);
+  font-size: 16px;
+  font-family: var(--report-font-heading);
+}
+
+/* Team Performance Table */
+.team-performance-table {
+  overflow-x: auto;
+}
+
+.team-performance-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.team-performance-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: rgba(13, 71, 161, 0.06);
+  font-family: var(--report-font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--report-muted);
+  border-bottom: 2px solid var(--report-border);
+}
+
+.team-performance-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--report-border);
+  font-size: 14px;
+  color: var(--report-text);
+}
+
+.team-performance-table tbody tr:hover {
+  background: rgba(13, 71, 161, 0.04);
+}
+
+.team-name-cell {
+  font-weight: 600;
+}
+
+.revenue-cell {
+  font-weight: 700;
+  color: var(--report-primary-start);
+  font-family: var(--report-font-heading);
+}
+
+/* Revenue Breakdown */
+.revenue-breakdown-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.revenue-chart-wrapper {
+  height: 300px;
+  position: relative;
+}
+
+.revenue-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.revenue-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(13, 71, 161, 0.04);
+  border-radius: 8px;
+}
+
+.revenue-label {
+  font-weight: 500;
+  color: var(--report-text);
+  font-size: 14px;
+}
+
+.revenue-value {
+  font-weight: 700;
+  color: var(--report-primary-start);
+  font-family: var(--report-font-heading);
+  font-size: 16px;
+}
+
+.revenue-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(81, 45, 168, 0.1));
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 2px solid var(--report-primary-start);
+}
+
+.revenue-total .revenue-label {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.revenue-total .revenue-value {
+  font-size: 20px;
+}
+
+/* Quick Actions */
+.analytics-actions-section {
+  margin-bottom: 0;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-quick-action {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 24px;
+  background: white;
+  border: 2px solid var(--report-border);
+  border-radius: 12px;
+  color: var(--report-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-quick-action:hover {
+  border-color: var(--report-primary-end);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15);
+}
+
+.btn-quick-action span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--report-muted);
+  margin-top: 4px;
+}
+
+.btn-public-dashboard {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+  border-color: #3b82f6;
+}
+
+.btn-print-report {
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(81, 45, 168, 0.1));
+  border-color: var(--report-primary-start);
+}
+
+/* Loading & Error States */
+.analytics-loading,
+.analytics-error {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: white;
+  border-radius: 16px;
+  padding: 48px;
+  margin: 24px;
+}
+
+.analytics-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(13, 71, 161, 0.2);
+  border-top-color: var(--report-primary-end);
+  animation: report-spin 1s linear infinite;
+}
+
+.analytics-error h2 {
+  margin: 0;
+  color: var(--report-text);
+  font-family: var(--report-font-heading);
+}
+
+.analytics-error p {
+  color: var(--report-muted);
+  text-align: center;
+}
+
+.btn-retry {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-retry:hover {
+  transform: translateY(-1px);
+}
+
+.analytics-empty {
+  text-align: center;
+  padding: 32px;
+  color: var(--report-muted);
+  font-size: 14px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .analytics-row {
+    grid-template-columns: 1fr;
+  }
+
+  .revenue-breakdown-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-container {
+    padding: 16px;
+  }
+
+  .analytics-header {
+    padding: 20px;
+  }
+
+  .analytics-header-main {
+    flex-direction: column;
+  }
+
+  .analytics-header-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .btn-action {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .analytics-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-section {
+    padding: 20px;
+  }
+
+  .analytics-tournament-name {
+    font-size: 24px;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .btn-quick-action {
+    min-width: 100%;
+  }
+}
+
+/* Comprehensive Print Styles */
+.comprehensive-print-container {
+  display: none;
+  position: absolute;
+  left: -9999px;
+  width: 210mm;
+  background: white;
+  color: #000;
+  font-family: var(--report-font-body);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Show container when in preview mode */
+.comprehensive-print-container.print-preview-visible {
+  display: block !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  visibility: visible !important;
+}
+
+/* Full-width mode for public print page */
+.public-print-modal .comprehensive-print-container.print-preview-visible {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure all content is visible in preview */
+.comprehensive-print-container.print-preview-visible * {
+  visibility: visible !important;
+}
+
+.comprehensive-print-container.print-preview-visible .print-section,
+.comprehensive-print-container.print-preview-visible .print-poster-page,
+.comprehensive-print-container.print-preview-visible .print-page-header,
+.comprehensive-print-container.print-preview-visible .print-page-footer {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Show container when in print mode (for screen preview) */
+.comprehensive-print-mode .comprehensive-print-container {
+  display: block;
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 210mm; /* A4 width */
+  max-width: 210mm; /* A4 width */
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* Print Preview Overlay/Modal */
+.print-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.print-preview-modal {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.print-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--report-border);
+  background: white;
+  border-radius: 16px 16px 0 0;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.print-preview-title {
+  margin: 0;
+  font-family: var(--report-font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--report-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.print-preview-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-export-comprehensive-pdf {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-print-from-preview {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-close-preview {
+  background: white;
+  color: var(--report-text);
+  border-color: var(--report-border);
+}
+
+.print-preview-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #f5f5f5;
+}
+
+/* Ensure preview shows all designs properly */
+.print-preview-content .comprehensive-print-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Full-width for public print */
+.public-print-modal .print-preview-content .comprehensive-print-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Make sure all sections are visible in preview */
+.print-preview-content .print-section,
+.print-preview-content .print-poster-page,
+.print-preview-content .print-page-header,
+.print-preview-content .print-page-footer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Ensure player cards grid is visible */
+.print-preview-content .print-players-cards-grid {
+  display: grid !important;
+  visibility: visible !important;
+}
+
+/* Ensure teams list is visible */
+.print-preview-content .print-teams-list {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* Ensure tournament details are visible */
+.print-preview-content .print-tournament-content {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* Public Print Page Styles */
+.public-print-page {
+  background: #f5f5f5 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+/* Ensure body and html can scroll on public print page */
+body.public-print-page-active,
+html.public-print-page-active {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+}
+
+.public-print-modal {
+  max-width: 100% !important;
+  width: 100% !important;
+  max-height: none !important;
+  height: auto !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 0 !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure preview content shows everything and allows natural page scrolling */
+.public-print-modal .print-preview-content {
+  min-height: 400px;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Make sure all sections are visible in preview */
+.public-print-modal .comprehensive-print-container {
+  min-height: auto;
+}
+
+.public-print-modal .print-section {
+  margin-bottom: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  min-height: auto !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Responsive team cards for public print page */
+.public-print-modal .print-teams-list {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  align-items: start !important;
+  align-content: start !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  min-height: auto !important;
+  height: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+  @media (max-width: 1000px) {
+  .public-print-modal .print-teams-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    align-items: start !important;
+    align-content: start !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+  @media (max-width: 600px) {
+    .public-print-modal .print-teams-list {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+      position: relative !important;
+      transform: none !important;
+      will-change: auto !important;
+      align-items: start !important;
+      align-content: start !important;
+      overflow: visible !important;
+      overflow-x: hidden !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  
+  .public-print-modal .print-team-item {
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition: none !important;
+    will-change: auto !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 !important;
+    backface-visibility: hidden !important;
+    perspective: 1000px !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    -ms-transform: translate3d(0, 0, 0) !important;
+    -o-transform: translate3d(0, 0, 0) !important;
+    overflow: visible !important;
+    align-self: start !important;
+  }
+  
+  .public-print-modal .print-team-item .print-team-logo {
+    width: 80px !important;
+    height: 80px !important;
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+  
+  .public-print-modal .print-team-item .print-team-name {
+    font-size: 20px !important;
+    transform: none !important;
+  }
+  
+  .public-print-modal .print-team-item .print-team-info {
+    font-size: 14px !important;
+    transform: none !important;
+  }
+  
+  .public-print-modal .print-team-item .print-page-header {
+    padding: 24px 28px !important;
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+  
+  .public-print-modal .print-team-item .print-team-guests {
+    padding: 20px !important;
+    gap: 14px !important;
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  
+  .public-print-modal .print-guest-card {
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition: none !important;
+    will-change: auto !important;
+    width: 120px !important;
+    height: 180px !important;
+    min-width: 120px !important;
+    min-height: 180px !important;
+    padding: 14px !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    backface-visibility: hidden !important;
+  }
+  
+  .public-print-modal .print-guest-photo {
+    width: 95px !important;
+    height: 95px !important;
+    position: relative !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+  
+  .public-print-modal .print-guest-name {
+    font-size: 13px !important;
+    position: relative !important;
+    transform: none !important;
+  }
+  
+  /* Prevent any movement or animation on mobile */
+  .public-print-modal .print-team-item,
+  .public-print-modal .print-team-item * {
+    transform: translate3d(0, 0, 0) !important;
+    transition: none !important;
+    animation: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Disable touch actions that might cause movement */
+  .public-print-modal .print-team-item {
+    touch-action: pan-y !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+}
+
+.public-print-modal .print-poster-page {
+  margin-bottom: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  min-height: 400px;
+  height: auto;
+  max-height: 600px;
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+}
+
+.public-print-modal .print-poster-image {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 400px;
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 0 !important;
+  display: block;
+}
+
+.print-poster-page {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto;
+  min-height: 400px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-width posters for public print */
+.public-print-modal .print-poster-page {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.print-poster-first {
+  page-break-before: auto;
+  break-before: auto;
+}
+
+.print-poster-second {
+  page-break-before: always;
+  break-before: page;
+}
+
+.print-poster-last {
+  page-break-after: auto;
+  break-after: auto;
+  page-break-before: always;
+  break-before: page;
+}
+
+.print-poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.print-section {
+  padding: 0;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.print-section:first-of-type {
+  page-break-before: auto;
+  break-before: auto;
+}
+
+.print-section:last-of-type {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.print-section-header {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+}
+
+.print-section-title {
+  margin: 0;
+  font-family: var(--report-font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #000;
+}
+
+.print-section-count {
+  font-size: 14px;
+  color: #666;
+  margin-left: 12px;
+  font-weight: 400;
+}
+
+/* Tournament Details Print Styles */
+.print-tournament-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.print-tournament-logo {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border: 1px solid #ddd;
+  padding: 8px;
+  background: #fff;
+}
+
+.print-tournament-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.print-tournament-info {
+  flex: 1;
+}
+
+.print-tournament-name {
+  margin: 0 0 8px;
+  font-family: var(--report-font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.print-tournament-subtitle {
+  margin: 0 0 16px;
+  font-size: 16px;
+  color: #666;
+}
+
+.print-tournament-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.print-meta-item {
+  font-size: 14px;
+  color: #000;
+}
+
+.print-meta-item strong {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Teams Print Styles */
+.print-teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.print-team-item {
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+}
+
+.print-team-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.print-team-logo {
+  width: 75px;
+  height: 75px;
+  flex-shrink: 0;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.print-team-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.print-team-info {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.print-team-name {
+  margin: 0 0 8px;
+  font-family: var(--report-font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.print-team-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  font-size: 13px;
+  color: #333;
+}
+
+.print-team-details div {
+  display: flex;
+  gap: 4px;
+}
+
+.print-team-details strong {
+  font-weight: 600;
+}
+
+.print-team-guests {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.print-guests-title {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.print-team-guests {
+  padding: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 0 0 20px 20px;
+}
+
+.print-guest-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.print-guest-photo,
+.print-guest-card-image {
+  width: 120px;
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.print-guest-photo-img,
+.print-guest-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.print-guest-card-img {
+  object-fit: contain;
+  background: #fff;
+}
+
+.print-guest-photo-placeholder {
+  width: 120px;
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 48px;
+  color: #9ca3af;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.print-guest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.print-guest-name {
+  font-weight: 800;
+  color: #1f2937;
+  font-size: 16px;
+  word-break: break-word;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.print-guest-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-left: 8px;
+}
+
+.print-guest-role {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(220, 38, 38, 0.1);
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.print-guest-id {
+  color: #999;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  margin-top: 2px;
+}
+
+.print-empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Print Page Header & Footer */
+.print-page-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20mm;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, #3b82f6, #8b5cf6) 1;
+  z-index: 10;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.print-page-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20mm;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+  border-top: 2px solid;
+  border-image: linear-gradient(90deg, #3b82f6, #8b5cf6) 1;
+  z-index: 10;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.print-header-content,
+.print-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Tournament details in header - responsive */
+@media (max-width: 768px) {
+  .print-header-content {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
+  .print-header-content > div:last-child {
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+.print-header-logo-img,
+.print-footer-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.print-header-text,
+.print-footer-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.print-app-name-header {
+  font-family: var(--report-font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.print-tagline {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.print-powered-by {
+  font-size: 10px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+.print-app-name {
+  font-family: var(--report-font-heading);
+  font-size: 16px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Adjust sections to account for header/footer */
+.print-section {
+  position: relative;
+  padding-top: 60px; /* Space for header */
+  padding-bottom: 60px; /* Space for footer */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.print-section .print-page-header {
+  flex-shrink: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.print-section .print-section-header {
+  flex-shrink: 0;
+  padding: 0 20mm 15mm;
+  margin-top: 0;
+}
+
+.print-section .print-tournament-content,
+.print-section .print-teams-list,
+.print-section .print-players-cards-grid {
+  flex: 1;
+  padding: 0 20mm;
+  overflow: auto;
+  margin: 0;
+}
+
+.print-section .print-page-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.print-poster-page {
+  position: relative;
+  min-height: 297mm;
+}
+
+.print-poster-page .print-page-footer {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.print-poster-page .print-footer-content {
+  color: white;
+}
+
+.print-poster-page .print-powered-by {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.print-poster-page .print-app-name {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Players Card Images Print Styles */
+.print-players-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1200px) {
+  .print-players-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .print-players-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .print-players-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.print-player-card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border-top: 5px solid transparent;
+  border-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) 1;
+}
+
+.print-player-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+  border-radius: 0 0 0 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.print-player-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.print-player-card-image-wrapper {
+  width: 100%;
+  height: 200px;
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8px;
+  margin: 0;
+}
+
+.print-player-card-image-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.print-player-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: transparent;
+}
+
+.print-player-photo-fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.print-player-card-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 56px;
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.print-player-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.print-player-card-name {
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 14px;
+  word-break: break-word;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.print-player-card-id {
+  color: #667eea;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.print-player-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  position: relative;
+}
+
+.print-player-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  padding: 6px 10px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.2s ease;
+}
+
+.print-player-detail-item:nth-child(1) {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+.print-player-detail-item:nth-child(2) {
+  background: linear-gradient(135deg, rgba(240, 147, 251, 0.08) 0%, rgba(245, 87, 108, 0.08) 100%);
+  border-color: rgba(240, 147, 251, 0.2);
+}
+
+.print-player-detail-item:nth-child(3) {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.08) 100%);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.print-detail-label {
+  font-weight: 700;
+  color: #667eea;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.print-player-detail-item:nth-child(1) .print-detail-label {
+  color: #667eea;
+}
+
+.print-player-detail-item:nth-child(2) .print-detail-label {
+  color: #f093fb;
+}
+
+.print-player-detail-item:nth-child(3) .print-detail-label {
+  color: #10b981;
+}
+
+.print-detail-value {
+  color: #1e293b;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  word-break: break-word;
+  font-size: 11px;
+}
+
+.print-player-detail-item:nth-child(1) .print-detail-value {
+  color: #1e293b;
+}
+
+.print-player-detail-item:nth-child(2) .print-detail-value {
+  color: #1e293b;
+}
+
+.print-player-detail-item:nth-child(3) .print-detail-value {
+  color: #1e293b;
+}
+
+.print-mobile-value {
+  font-family: 'Courier New', monospace;
+  color: #1e293b;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@media print {
+  /* Hide print preview header and buttons in all print scenarios */
+  .print-preview-header,
+  .print-preview-title,
+  .btn-action,
+  .btn-print,
+  .btn-share {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Hide everything when in comprehensive print mode */
+  body.comprehensive-print-mode .analytics-container,
+  body.comprehensive-print-mode .analytics-header,
+  body.comprehensive-print-mode .analytics-main,
+  body.comprehensive-print-mode .poster-upload-section,
+  body.comprehensive-print-mode .print-preview-wrapper,
+  body.comprehensive-print-mode .print-preview-overlay,
+  body.comprehensive-print-mode .print-preview-header,
+  body.comprehensive-print-mode .print-preview-actions,
+  body.comprehensive-print-mode header,
+  body.comprehensive-print-mode nav,
+  body.comprehensive-print-mode .print-search-bar,
+  .print-search-bar,
+  .print-preview-header,
+  .print-preview-title,
+  .btn-action,
+  .btn-print,
+  .btn-share {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Hide print-preview-modal but not public-print-modal */
+  body.comprehensive-print-mode .print-preview-modal:not(.public-print-modal) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Show print-preview-content in print mode so children can be visible */
+  body.comprehensive-print-mode .print-preview-content {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  /* Hide action buttons in print */
+  body.comprehensive-print-mode .btn-action,
+  body.comprehensive-print-mode .btn-print,
+  body.comprehensive-print-mode .btn-share {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Show public print page and modal in print mode */
+  body.comprehensive-print-mode .public-print-page,
+  body.comprehensive-print-mode .public-print-modal {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Remove padding from print preview content in print */
+  body.comprehensive-print-mode .print-preview-content {
+    padding: 0 !important;
+  }
+
+  /* Show comprehensive print container - must be visible even if parent is hidden */
+  body.comprehensive-print-mode .comprehensive-print-container,
+  .comprehensive-print-container {
+    display: block !important;
+    position: static !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important; /* A4 width */
+    max-width: 210mm !important; /* A4 width */
+    background: white !important;
+    visibility: visible !important;
+    page-break-after: auto;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    z-index: 1 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ensure first child starts at the top */
+  .comprehensive-print-container > *:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Ensure print container is visible even if inside hidden modal */
+  body.comprehensive-print-mode .print-preview-content .comprehensive-print-container {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  body.comprehensive-print-mode .comprehensive-print-container * {
+    visibility: visible !important;
+  }
+
+  /* Ensure all print sections are visible */
+  .comprehensive-print-container .print-section,
+  .comprehensive-print-container .print-poster-page {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Hide body background and other elements */
+  body.comprehensive-print-mode {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Optimize main header for print */
+  .print-page-header {
+    padding: 5mm 4mm !important;
+    margin-bottom: 5mm !important;
+    margin-top: 0 !important;
+    background: white !important;
+    border-bottom: 1px solid #ddd !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* First page header should have minimal padding */
+  .comprehensive-print-container > .print-page-header:first-child {
+    padding-top: 2mm !important;
+    padding-bottom: 4mm !important;
+    margin-top: 0 !important;
+    margin-bottom: 5mm !important;
+  }
+
+  /* Reduce header content spacing in print */
+  .print-header-content {
+    padding: 0 !important;
+  }
+
+  .print-header-text {
+    margin-left: 12px !important;
+  }
+
+  .print-app-name-header {
+    font-size: 18pt !important;
+  }
+
+  .print-tagline {
+    font-size: 8pt !important;
+  }
+
+  /* Optimize footer for print */
+  .print-page-footer {
+    padding: 5mm 0 !important;
+    margin-top: 8mm !important;
+    background: white !important;
+    border-top: 1px solid #ddd !important;
+  }
+
+  /* Ensure count badges don't break layout */
+  .print-section-count {
+    display: inline-block !important;
+    padding: 4px 8px !important;
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    font-size: 10pt !important;
+  }
+
+  /* Optimize text for print readability */
+  .comprehensive-print-container h1,
+  .comprehensive-print-container h2,
+  .comprehensive-print-container h3 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Ensure proper spacing between sections */
+  .print-section + .print-section {
+    margin-top: 0 !important;
+  }
+
+  /* Optimize table-like structures for print */
+  .print-meta-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure logos and images don't break */
+  .print-tournament-logo,
+  .print-team-logo {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Print-specific font optimizations */
+  .comprehensive-print-container {
+    font-family: 'Arial', 'Helvetica', sans-serif !important;
+  }
+
+  .comprehensive-print-container .print-section-title,
+  .comprehensive-print-container .print-tournament-name,
+  .comprehensive-print-container .print-team-name {
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* Remove all shadows and decorative effects in print */
+  .comprehensive-print-container * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure borders are visible in print */
+  .comprehensive-print-container .print-team-item,
+  .comprehensive-print-container .print-player-card-item,
+  .comprehensive-print-container .print-guest-card {
+    border: 1px solid #333 !important;
+  }
+
+  /* Print-specific styles - Ensure posters fill one complete page */
+  .print-poster-page {
+    width: 210mm !important; /* A4 width */
+    height: 297mm !important; /* A4 height */
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  /* First poster exception - no break before, but still break after */
+  .print-poster-first {
+    page-break-before: auto !important;
+    break-before: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 297mm !important; /* A4 height */
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+  }
+
+  .print-poster-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure first poster image fills the page */
+  .print-poster-first .print-poster-image {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .print-poster-first {
+    page-break-before: auto !important;
+    break-before: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print-poster-second {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print-poster-last {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print-section {
+    padding: 5mm 0 !important;
+    margin: 0 !important;
+    width: 210mm !important; /* A4 width */
+    max-width: 210mm !important; /* A4 width */
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Remove header/footer padding in print */
+  .print-section .print-page-header,
+  .print-section .print-page-footer {
+    display: none !important;
+  }
+
+  /* First section should have minimal top padding */
+  .print-section:first-of-type,
+  .comprehensive-print-container > .print-section:first-child,
+  .comprehensive-print-container > .print-poster-page:first-child + .print-section {
+    padding-top: 2mm !important;
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
+
+  /* If first element is a poster, no padding needed */
+  .comprehensive-print-container > .print-poster-page:first-child {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* If header is first, reduce its bottom margin */
+  .comprehensive-print-container > .print-page-header:first-child {
+    margin-bottom: 5mm !important;
+  }
+
+  /* Reduce spacing after header when followed by poster */
+  .comprehensive-print-container > .print-page-header:first-child + .print-poster-page {
+    margin-top: 0 !important;
+  }
+
+  /* Reduce spacing after header when followed by section */
+  .comprehensive-print-container > .print-page-header:first-child + .print-section {
+    padding-top: 3mm !important;
+    margin-top: 0 !important;
+  }
+
+  /* Hide empty sections to prevent blank pages */
+  .print-section:empty,
+  .print-poster-page:empty {
+    display: none !important;
+  }
+
+  /* Prevent page breaks inside critical content */
+  .print-team-item,
+  .print-player-card-item,
+  .print-guest-card,
+  .print-tournament-content {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  /* Ensure all images stay on one page - never break */
+  .comprehensive-print-container img,
+  .print-poster-image,
+  .print-player-card-image,
+  .print-player-photo-fallback,
+  .print-guest-card-img,
+  .print-guest-photo-img,
+  .print-tournament-logo img,
+  .print-team-logo img {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Image containers should never break */
+  .print-player-card-image-wrapper,
+  .print-guest-photo,
+  .print-guest-card-image,
+  .print-tournament-logo,
+  .print-team-logo {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  /* Allow page breaks in grids but keep items together */
+  .print-teams-list,
+  .print-guests-grid {
+    page-break-inside: auto;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  /* Players grid - allow breaks but ensure 12 cards per page */
+  .print-players-cards-grid {
+    page-break-inside: auto !important;
+    orphans: 4 !important;
+    widows: 4 !important;
+  }
+
+  /* Ensure section headers stay with content */
+  .print-section-header {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Keep tournament info together */
+  .print-tournament-info {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-section .print-section-header {
+    padding: 8px 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 8px !important;
+    border-bottom: 2px solid #000 !important;
+    background: white !important;
+    border-radius: 4px !important;
+  }
+  
+  .print-section .print-section-title {
+    font-size: 18pt !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+  }
+  
+  /* Reduce players section header spacing for better card fit */
+  .print-players-section .print-section-header {
+    margin-bottom: 6px !important;
+    padding: 8px 12px !important;
+  }
+  
+  .print-section-count {
+    font-size: 11pt !important;
+    color: #666 !important;
+    background: #f5f5f5 !important;
+    padding: 4px 10px !important;
+    border-radius: 4px !important;
+  }
+
+  .print-section .print-tournament-content,
+  .print-section .print-teams-list,
+  .print-section .print-players-cards-grid {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Optimize tournament details for print */
+  .print-tournament-content {
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .print-tournament-meta {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    font-size: 11pt !important;
+  }
+
+  .print-tournament-name {
+    font-size: 20pt !important;
+    margin-bottom: 8px !important;
+  }
+
+  .print-tournament-subtitle {
+    font-size: 12pt !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Optimize teams section for print */
+  .print-teams-list {
+    gap: 10px !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  
+  @media (max-width: 1000px) {
+    .print-teams-list {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .print-teams-list {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      will-change: auto !important;
+      overflow: visible !important;
+    }
+    
+    .print-team-item {
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      transition: none !important;
+      will-change: auto !important;
+      min-height: auto !important;
+      height: auto !important;
+      max-height: none !important;
+      left: 0 !important;
+      top: 0 !important;
+      right: auto !important;
+      bottom: auto !important;
+      margin: 0 !important;
+      backface-visibility: hidden !important;
+      perspective: 1000px !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      -moz-transform: translate3d(0, 0, 0) !important;
+      -ms-transform: translate3d(0, 0, 0) !important;
+      -o-transform: translate3d(0, 0, 0) !important;
+      touch-action: pan-y !important;
+      overflow: visible !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      -webkit-column-break-inside: avoid !important;
+    }
+    
+    .print-team-item .print-team-logo {
+      width: 80px !important;
+      height: 80px !important;
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .print-team-item .print-team-name {
+      font-size: 20px !important;
+      transform: none !important;
+    }
+    
+    .print-team-item .print-team-info {
+      font-size: 14px !important;
+      transform: none !important;
+    }
+    
+    .print-team-item .print-page-header {
+      padding: 24px 28px !important;
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .print-team-item .print-team-guests {
+      padding: 20px !important;
+      gap: 14px !important;
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      overflow: visible !important;
+      min-height: auto !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+    
+    .print-guest-card {
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      transition: none !important;
+      will-change: auto !important;
+      width: 120px !important;
+      height: 180px !important;
+      min-width: 120px !important;
+      min-height: 180px !important;
+      padding: 14px !important;
+      left: 0 !important;
+      top: 0 !important;
+      margin: 0 !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      backface-visibility: hidden !important;
+    }
+    
+    .print-guest-photo {
+      width: 95px !important;
+      height: 95px !important;
+      position: relative !important;
+      transform: translate3d(0, 0, 0) !important;
+      -webkit-transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .print-guest-name {
+      font-size: 13px !important;
+      position: relative !important;
+      transform: none !important;
+    }
+    
+    /* Prevent any movement or animation on mobile */
+    .print-team-item,
+    .print-team-item * {
+      transform: translate3d(0, 0, 0) !important;
+      transition: none !important;
+      animation: none !important;
+      -webkit-transition: none !important;
+      -moz-transition: none !important;
+      -o-transition: none !important;
+      -webkit-animation: none !important;
+      -moz-animation: none !important;
+      -o-animation: none !important;
+      will-change: auto !important;
+    }
+    
+    /* Disable touch actions that might cause movement */
+    .print-team-item {
+      touch-action: pan-y !important;
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+    }
+  }
+
+  .print-team-item {
+    padding: 8px !important;
+    border: 1px solid #ddd !important;
+    background: white !important;
+    box-shadow: none !important;
+    margin-bottom: 8px !important;
+  }
+
+  .print-team-name {
+    font-size: 14pt !important;
+  }
+
+  /* Optimize guest cards for print */
+  .print-guests-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .print-guest-card {
+    padding: 8px !important;
+    border: 1px solid #ddd !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .print-guest-photo,
+  .print-guest-card-image {
+    width: 100px !important;
+    height: 140px !important;
+  }
+
+  .print-guest-name {
+    font-size: 9pt !important;
+  }
+
+  /* Optimize section headers for print */
+  .print-section-header {
+    padding: 12px 0 !important;
+    margin-bottom: 16px !important;
+    background: white !important;
+    border-bottom: 2px solid #000 !important;
+  }
+
+  .print-section-title {
+    font-size: 18pt !important;
+    color: #000 !important;
+    margin: 0 !important;
+  }
+
+  /* Remove decorative elements in print */
+  .comprehensive-print-container .print-section-header::before,
+  .comprehensive-print-container .print-section-header::after,
+  .comprehensive-print-container .print-team-item::before,
+  .comprehensive-print-container .print-team-item::after,
+  .comprehensive-print-container .print-player-card-item::before {
+    display: none !important;
+  }
+
+  /* Ensure all preview styles are applied in print - posters fill one page */
+  .print-poster-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Poster page container */
+  .print-poster-page {
+    position: relative !important;
+    display: block !important;
+    width: 210mm !important; /* A4 width */
+    height: 297mm !important; /* A4 height */
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+  }
+
+  .print-section-title {
+    margin: 0 !important;
+    font-family: var(--report-font-heading) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: #000 !important;
+  }
+
+  /* Adjust grid for print - 4 columns × 3 rows = 12 cards per page */
+  .print-players-cards-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+    row-gap: 8px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    padding: 0 !important;
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    page-break-inside: auto !important;
+  }
+  
+  /* Force page break after every 12 cards (3 rows of 4 cards) */
+  .print-players-cards-grid > .print-player-card-item:nth-child(12n) {
+    page-break-after: always !important;
+    break-after: page !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Ensure cards don't break across pages */
+  .print-players-cards-grid > .print-player-card-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Optimize player cards for print - ensure images don't break */
+  .print-player-card-item {
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    background: white !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-top: 2px solid #667eea !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    height: auto !important;
+    max-height: 90mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .print-player-card-item::before {
+    display: none !important;
+  }
+  
+  /* Tournament header in cards - compact for print */
+  .print-player-card-item > div:first-of-type {
+    padding: 6px 8px !important;
+    font-size: 7pt !important;
+  }
+  
+  .print-player-card-item > div:first-of-type img {
+    width: 24px !important;
+    height: 24px !important;
+    padding: 2px !important;
+  }
+  
+  .print-player-card-item > div:first-of-type > div {
+    font-size: 7pt !important;
+    line-height: 1.2 !important;
+  }
+  
+  .print-player-card-item > div:first-of-type > div > div:first-child {
+    font-size: 7pt !important;
+    margin-bottom: 1px !important;
+  }
+  
+  .print-player-card-item > div:first-of-type > div > div:last-child {
+    font-size: 6pt !important;
+  }
+
+  .print-player-card-image-wrapper {
+    height: 50mm !important;
+    max-width: 100% !important;
+    max-height: 50mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    padding: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .print-player-card-image-wrapper::after {
+    display: none !important;
+  }
+
+  /* Ensure player card images never break */
+  .print-player-card-image-wrapper img {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    display: block !important;
+  }
+
+  .print-player-card-info {
+    padding: 6px 8px !important;
+    font-size: 8pt !important;
+    background: white !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
+
+  .print-player-card-name {
+    font-size: 9pt !important;
+    font-weight: 800 !important;
+    color: #667eea !important;
+    margin-bottom: 4px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2px !important;
+    line-height: 1.2 !important;
+  }
+
+  .print-player-card-id {
+    font-size: 9pt !important;
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+    padding: 4px 10px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(102, 126, 234, 0.3) !important;
+  }
+
+  .print-player-card-details {
+    padding: 0 !important;
+    margin-top: 4px !important;
+    font-size: 7pt !important;
+    gap: 3px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .print-player-detail-item {
+    background: rgba(102, 126, 234, 0.05) !important;
+    border: 1px solid rgba(102, 126, 234, 0.15) !important;
+    padding: 3px 6px !important;
+    border-radius: 4px !important;
+    font-size: 7pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .print-detail-label {
+    font-size: 7pt !important;
+    color: #667eea !important;
+    font-weight: 700 !important;
+  }
+
+  .print-detail-value {
+    font-size: 9pt !important;
+    color: #111827 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Ensure all preview styles are preserved in print */
+  .print-tournament-content {
+    display: flex !important;
+    gap: 24px !important;
+    align-items: flex-start !important;
+  }
+
+  .print-teams-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  .print-team-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .print-player-card-item {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Page margins - Optimized for A4 */
+  @page {
+    size: A4;
+    margin: 10mm 10mm;
+  }
+
+  /* First page has smaller top margin */
+  @page:first {
+    margin-top: 5mm;
+    margin-bottom: 10mm;
+    margin-left: 10mm;
+    margin-right: 10mm;
+  }
+
+  /* Pages with posters should have minimal margins to fill page */
+  @page {
+    size: A4 portrait;
+  }
+
+  /* Ensure proper print colors - convert gradients to solid colors for better print quality */
+  .comprehensive-print-container * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Optimize images for print - ensure they never break */
+  .comprehensive-print-container img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-column-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Poster pages must be exactly one page */
+  .print-poster-page {
+    display: block !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print-poster-first {
+    page-break-before: auto !important;
+    break-before: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .print-poster-second,
+  .print-poster-last {
+    page-break-before: always !important;
+    break-before: page !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Improve text readability in print */
+  .comprehensive-print-container {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+  }
+
+  /* Ensure backgrounds print */
+  .comprehensive-print-container .print-section-header,
+  .comprehensive-print-container .print-page-header,
+  .comprehensive-print-container .print-page-footer {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Prevent orphaned page breaks - ensure last element never breaks */
+  .comprehensive-print-container > .print-poster-last,
+  .comprehensive-print-container > .print-section:last-of-type {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  /* All poster pages must break after to ensure they fill one page */
+  .print-poster-page {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Last poster should break after only if there's content after */
+  .print-poster-last:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .print-section:not(:last-of-type) {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* Tournament Details - only break if there are posters before it */
+  .print-poster-page ~ .print-section.print-tournament-details {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* If no posters, first section should not have page break - MUST be first child or first of type */
+  .comprehensive-print-container > .print-section:first-child,
+  .comprehensive-print-container > .print-section:first-of-type,
+  .comprehensive-print-container > .print-section.print-tournament-details:first-child {
+    page-break-before: auto !important;
+    break-before: auto !important;
+  }
+
+  /* Override: if there's a poster before, then break */
+  .print-poster-page + .print-section.print-tournament-details,
+  .print-poster-page ~ .print-section.print-tournament-details {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Teams and Players sections always break before (but not if they're first) */
+  .print-section.print-teams-section:not(:first-of-type),
+  .print-section.print-players-section:not(:first-of-type) {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}
+
+/* Poster Upload Section */
+.poster-upload-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.poster-upload-header {
+  margin-bottom: 24px;
+}
+
+.poster-upload-header h2 {
+  margin: 0 0 8px;
+  font-family: var(--report-font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--report-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.poster-upload-header p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--report-muted);
+  line-height: 1.5;
+}
+
+.poster-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.poster-upload-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.poster-upload-label {
+  font-family: var(--report-font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--report-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.poster-upload-area {
+  border: 2px dashed var(--report-border);
+  border-radius: 12px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.poster-upload-area:hover {
+  border-color: var(--report-primary-end);
+  background: rgba(13, 71, 161, 0.02);
+}
+
+.poster-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+  text-align: center;
+}
+
+.poster-upload-icon {
+  font-size: 48px;
+  opacity: 0.5;
+}
+
+.poster-upload-placeholder p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--report-muted);
+}
+
+.poster-preview {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.poster-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.poster-actions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.poster-preview:hover .poster-actions {
+  opacity: 1;
+}
+
+.poster-btn {
+  flex: 1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--report-font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.poster-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.poster-btn-upload {
+  background: white;
+  color: var(--report-primary-start);
+}
+
+.poster-btn-upload:hover:not(:disabled) {
+  background: var(--report-primary-start);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.poster-btn-delete {
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+}
+
+.poster-btn-delete:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* PDF Generation Styles */
+.pdf-poster {
+  width: 100%;
+  height: 297mm;
+  page-break-before: always;
+  page-break-after: always;
+  break-before: page;
+  break-after: page;
+  overflow: hidden;
+  position: relative;
+}
+
+.pdf-poster-first {
+  page-break-before: auto;
+  break-before: auto;
+}
+
+.pdf-poster-last {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.pdf-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media print {
+  .poster-upload-section {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .poster-upload-section {
+    padding: 20px;
+  }
+
+  .poster-upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+
+/* Dark Mode CSS Variables */
+.theme-dark {
+  --report-primary-start: #60a5fa;
+  --report-primary-end: #a78bfa;
+  --report-gold: #fbbf24;
+  --report-text: #e2e8f0;
+  --report-muted: #94a3b8;
+  --report-border: rgba(226, 232, 240, 0.15);
+  --report-card-shadow: 0 12px 25px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark Mode - Report Container */
+.theme-dark .report-container {
+  background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 50%, #16213E 100%);
+  color: var(--report-text);
+}
+
+/* Dark Mode - Report Toolbar */
+.theme-dark .report-toolbar button {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  color: var(--report-text);
+  box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.6);
+}
+
+.theme-dark .report-toolbar button:hover {
+  background: #334155;
+  border-color: var(--report-primary-end);
+  color: var(--report-primary-end);
+}
+
+/* Dark Mode - Report Document */
+.theme-dark .report-document {
+  background: #1e293b;
+  box-shadow: 0 24px 40px -30px rgba(0, 0, 0, 0.6);
+}
+
+.theme-dark .report-page {
+  background: #1e293b;
+}
+
+.theme-dark .report-summary-page {
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.08) 0%, rgba(167, 139, 250, 0.12) 100%);
+}
+
+/* Dark Mode - Report Hero */
+.theme-dark .report-hero-logo,
+.theme-dark .report-hero-logo-fallback {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.25));
+  border-color: rgba(226, 232, 240, 0.2);
+  box-shadow: 0 14px 30px -20px rgba(0, 0, 0, 0.7);
+}
+
+.theme-dark .report-hero-logo img {
+  background: #1e293b;
+}
+
+.theme-dark .report-hero-copy h1 {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-dark .report-hero-copy p {
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Report Divider */
+.theme-dark .report-divider {
+  background: rgba(226, 232, 240, 0.15);
+}
+
+/* Dark Mode - Report Cards */
+.theme-dark .report-card {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.1);
+  box-shadow: 0 20px 40px -36px rgba(0, 0, 0, 0.8);
+}
+
+.theme-dark .report-card h2 {
+  color: var(--report-primary-start);
+}
+
+.theme-dark .report-details-list dt {
+  color: var(--report-muted);
+}
+
+.theme-dark .report-details-list dd {
+  color: var(--report-text);
+}
+
+/* Dark Mode - Team Pills */
+.theme-dark .report-team-pill-logo {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+.theme-dark .report-team-pill-fallback {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--report-primary-end);
+}
+
+.theme-dark .report-team-pill-name {
+  color: var(--report-text);
+}
+
+/* Dark Mode - Empty State */
+.theme-dark .report-empty-state {
+  background: rgba(15, 23, 42, 0.3);
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Report Footer */
+.theme-dark .report-footer {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.theme-dark .report-footer-line {
+  background: rgba(226, 232, 240, 0.15);
+}
+
+/* Dark Mode - Report Section Heading */
+.theme-dark .report-section-heading h2 {
+  color: var(--report-primary-start);
+}
+
+.theme-dark .report-section-heading span {
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Player Cards */
+.theme-dark .report-player-card {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  box-shadow: 0 16px 24px -30px rgba(0, 0, 0, 0.8);
+}
+
+.theme-dark .report-player-photo {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.2);
+}
+
+.theme-dark .report-player-initials {
+  color: var(--report-primary-end);
+}
+
+.theme-dark .report-player-body h4 {
+  color: var(--report-text);
+}
+
+.theme-dark .report-player-body p {
+  color: var(--report-muted);
+}
+
+.theme-dark .report-player-id {
+  color: var(--report-primary-start);
+}
+
+/* Dark Mode - Loading & Error States */
+.theme-dark .report-loading,
+.theme-dark .report-error {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(167, 139, 250, 0.12));
+}
+
+.theme-dark .report-spinner {
+  border-color: rgba(96, 165, 250, 0.3);
+  border-top-color: var(--report-primary-end);
+}
+
+.theme-dark .report-error button {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  color: var(--report-text);
+}
+
+.theme-dark .report-error button:hover {
+  background: #334155;
+  border-color: var(--report-primary-end);
+}
+
+/* Dark Mode - Floating Print Button */
+.theme-dark .report-floating-print {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  box-shadow: 0 18px 32px -24px rgba(96, 165, 250, 0.8);
+}
+
+.theme-dark .report-floating-print:hover {
+  box-shadow: 0 22px 38px -24px rgba(96, 165, 250, 0.9);
+}
+
+/* Dark Mode - Analytics Container */
+.theme-dark .analytics-container {
+  background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 50%, #16213E 100%);
+  color: var(--report-text);
+}
+
+/* Dark Mode - Analytics Header */
+.theme-dark .analytics-header {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .analytics-tournament-logo {
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.theme-dark .analytics-tournament-name {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-dark .analytics-badge {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+}
+
+.theme-dark .analytics-subtitle {
+  color: var(--report-muted);
+}
+
+.theme-dark .analytics-meta-item {
+  color: var(--report-text);
+}
+
+.theme-dark .analytics-meta-item strong {
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Action Buttons */
+.theme-dark .btn-action {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  color: var(--report-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .btn-action:hover:not(:disabled) {
+  background: #334155;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .btn-refresh {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: transparent;
+}
+
+.theme-dark .btn-export-pdf {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: transparent;
+}
+
+.theme-dark .btn-export-excel {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: transparent;
+}
+
+.theme-dark .btn-comprehensive-print {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: transparent;
+}
+
+/* Dark Mode - Analytics Sections */
+.theme-dark .analytics-section {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .analytics-section-title {
+  color: var(--report-text);
+}
+
+/* Dark Mode - Statistics Cards */
+.theme-dark .stat-card {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .stat-card:hover {
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.4);
+  background: #334155;
+}
+
+.theme-dark .stat-card-title {
+  color: var(--report-muted);
+}
+
+.theme-dark .stat-card-value {
+  color: var(--report-text);
+}
+
+.theme-dark .stat-card-subtitle {
+  color: var(--report-muted);
+}
+
+.theme-dark .stat-card-progress-bar {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+.theme-dark .stat-card-progress-fill {
+  background: linear-gradient(90deg, var(--report-primary-start), var(--report-primary-end));
+}
+
+.theme-dark .stat-card-progress-text {
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Timeline */
+.theme-dark .timeline-item {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .timeline-week-label {
+  color: var(--report-text);
+}
+
+.theme-dark .timeline-week-date {
+  color: var(--report-muted);
+}
+
+.theme-dark .timeline-bar {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+.theme-dark .timeline-bar-fill {
+  background: linear-gradient(90deg, var(--report-primary-start), var(--report-primary-end));
+}
+
+.theme-dark .timeline-stats {
+  color: var(--report-muted);
+}
+
+.theme-dark .timeline-percentage {
+  color: var(--report-primary-start);
+}
+
+/* Dark Mode - Top Performers */
+.theme-dark .performer-item {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .performer-item:hover {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+.theme-dark .performer-rank {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+}
+
+.theme-dark .performer-name {
+  color: var(--report-text);
+}
+
+.theme-dark .performer-details {
+  color: var(--report-muted);
+}
+
+.theme-dark .performer-price {
+  color: var(--report-primary-start);
+}
+
+/* Dark Mode - Team Performance Table */
+.theme-dark .team-performance-table th {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--report-muted);
+  border-bottom-color: rgba(226, 232, 240, 0.15);
+}
+
+.theme-dark .team-performance-table td {
+  border-bottom-color: rgba(226, 232, 240, 0.1);
+  color: var(--report-text);
+}
+
+.theme-dark .team-performance-table tbody tr:hover {
+  background: rgba(96, 165, 250, 0.08);
+}
+
+.theme-dark .team-name-cell {
+  color: var(--report-text);
+}
+
+.theme-dark .revenue-cell {
+  color: var(--report-primary-start);
+}
+
+/* Dark Mode - Revenue Breakdown */
+.theme-dark .revenue-item {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .revenue-label {
+  color: var(--report-text);
+}
+
+.theme-dark .revenue-value {
+  color: var(--report-primary-start);
+}
+
+.theme-dark .revenue-total {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.15));
+  border-color: var(--report-primary-start);
+}
+
+.theme-dark .revenue-total .revenue-label {
+  color: var(--report-text);
+}
+
+.theme-dark .revenue-total .revenue-value {
+  color: var(--report-primary-start);
+}
+
+/* Dark Mode - Quick Actions */
+.theme-dark .btn-quick-action {
+  background: #1e293b;
+  border-color: rgba(226, 232, 240, 0.15);
+  color: var(--report-text);
+}
+
+.theme-dark .btn-quick-action:hover {
+  background: #334155;
+  border-color: var(--report-primary-end);
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .btn-quick-action span {
+  color: var(--report-muted);
+}
+
+.theme-dark .btn-public-dashboard {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.15));
+  border-color: #3b82f6;
+}
+
+.theme-dark .btn-print-report {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.15));
+  border-color: var(--report-primary-start);
+}
+
+/* Dark Mode - Loading & Error States */
+.theme-dark .analytics-loading,
+.theme-dark .analytics-error {
+  background: #1e293b;
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .analytics-spinner {
+  border-color: rgba(96, 165, 250, 0.3);
+  border-top-color: var(--report-primary-end);
+}
+
+.theme-dark .analytics-error h2 {
+  color: var(--report-text);
+}
+
+.theme-dark .analytics-error p {
+  color: var(--report-muted);
+}
+
+.theme-dark .btn-retry {
+  background: linear-gradient(135deg, var(--report-primary-start), var(--report-primary-end));
+}
+
+.theme-dark .analytics-empty {
+  color: var(--report-muted);
+}
+
+/* Dark Mode - Chart Container */
+.theme-dark .chart-container {
+  background: #1e293b;
+  border: 1px solid rgba(226, 232, 240, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode - Poster Upload Section */
+.theme-dark .poster-upload-section {
+  background: #1e293b;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.theme-dark .poster-upload-header h2 {
+  color: var(--report-text);
+}
+
+.theme-dark .poster-upload-header p {
+  color: var(--report-muted);
+}
+
+.theme-dark .poster-upload-label {
+  color: var(--report-text);
+}
+
+.theme-dark .poster-upload-area {
+  border-color: rgba(226, 232, 240, 0.15);
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.theme-dark .poster-upload-area:hover {
+  border-color: var(--report-primary-end);
+  background: rgba(96, 165, 250, 0.08);
+}
+
+.theme-dark .poster-upload-placeholder p {
+  color: var(--report-muted);
+}
+
+.theme-dark .poster-actions {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.theme-dark .poster-btn-upload {
+  background: rgba(30, 41, 59, 0.95);
+  color: var(--report-primary-start);
+}
+
+.theme-dark .poster-btn-upload:hover:not(:disabled) {
+  background: var(--report-primary-start);
+  color: white;
+}
+
+.theme-dark .poster-btn-delete {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+.theme-dark .poster-btn-delete:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+/* Dark Mode - Public Link Button */
+.theme-dark .btn-public-print {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: transparent;
+}
+
+/* Dark Mode - Print Preview Modal */
+.theme-dark .print-preview-overlay {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.theme-dark .print-preview-modal {
+  background: #1e293b;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.theme-dark .print-preview-header {
+  background: #1e293b;
+  border-bottom-color: rgba(226, 232, 240, 0.15);
+}
+
+.theme-dark .print-preview-title {
+  color: var(--report-text);
+}
+
+.theme-dark .print-preview-content {
+  background: #0F0F23;
+}
+
+.theme-dark .btn-close-preview {
+  background: #1e293b;
+  color: var(--report-text);
+  border-color: rgba(226, 232, 240, 0.15);
+}
+
+.theme-dark .btn-close-preview:hover {
+  background: #334155;
+}
+
+/* Dark Mode - Responsive Adjustments */
+@media (max-width: 768px) {
+  .theme-dark .analytics-container {
+    background: linear-gradient(135deg, #0F0F23 0%, #1A1A2E 50%, #16213E 100%);
+  }
+}
+
+
+/* Auction Minimal Report */
+.auction-report {
+  min-height: 100vh;
+  padding: 16px 20px 32px;
+  background: var(--auction-bg);
+  color: var(--auction-ink);
+  font-family: var(--report-font-body);
+}
+
+.auction-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auction-hero {
+  background: var(--auction-panel);
+  border-radius: 28px;
+  border: 1px solid var(--auction-border);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 40px 80px -60px rgba(47, 36, 27, 0.45);
+}
+
+.auction-hero__identity {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.auction-hero__details {
+  flex: 1 1 320px;
+  min-width: 320px;
+  text-align: center;
+}
+
+.auction-hero__logo-frame {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: var(--auction-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--auction-border);
+}
+
+.auction-hero__logo {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.auction-hero__logo--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--auction-accent);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.auction-hero__details h1 {
+  margin: 0 0 2px 0;
+  font-size: 28px;
+  font-family: var(--report-font-heading);
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.auction-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--auction-muted);
+  margin: 0 0 2px;
+}
+
+.auction-hero__subtitle {
+  margin: 4px 0 10px;
+  color: var(--auction-muted);
+  font-size: 15px;
+}
+
+.auction-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.auction-meta-grid div {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(233, 220, 208, 0.6);
+}
+
+.auction-meta-grid dt {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--auction-muted);
+}
+
+.auction-meta-grid dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  color: var(--auction-ink);
+}
+
+.auction-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.auction-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.auction-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auction-btn--primary {
+  background: var(--auction-accent);
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(201, 127, 79, 0.35);
+}
+
+.auction-btn--secondary {
+  border-color: var(--auction-accent);
+  color: var(--auction-accent);
+  background: rgba(201, 127, 79, 0.08);
+}
+
+.auction-btn--ghost {
+  border-color: var(--auction-border);
+  color: var(--auction-ink);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.auction-btn--dashed {
+  border-style: dashed;
+  border-color: var(--auction-border);
+  color: var(--auction-muted);
+  width: 100%;
+}
+
+.auction-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(47, 36, 27, 0.2);
+}
+
+.auction-posters {
+  background: var(--auction-panel);
+  border-radius: 24px;
+  border: 1px solid var(--auction-border);
+  padding: 20px 24px;
+  box-shadow: 0 30px 60px -50px rgba(47, 36, 27, 0.35);
+}
+
+.auction-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.auction-section-heading h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+
+.auction-section-support {
+  margin: 0;
+  max-width: 320px;
+  color: var(--auction-muted);
+  font-size: 14px;
+}
+
+.auction-posters__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.auction-poster-card {
+  border: 1px dashed rgba(233, 220, 208, 0.8);
+  border-radius: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-poster-card__header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.auction-poster-card__support {
+  margin: 4px 0 0;
+  color: var(--auction-muted);
+  font-size: 13px;
+}
+
+.auction-poster-card__body {
+  border-radius: 16px;
+  border: 1px dashed var(--auction-border);
+  background: rgba(255, 255, 255, 0.5);
+  min-height: 220px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-poster-card__body.is-empty {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auction-poster-card__body img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 35px -30px rgba(47, 36, 27, 0.5);
+}
+
+.auction-poster-card__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.auction-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auction-section {
+  background: var(--auction-panel);
+  border-radius: 28px;
+  border: 1px solid var(--auction-border);
+  padding: 20px 24px;
+  box-shadow: 0 30px 70px -60px rgba(47, 36, 27, 0.4);
+}
+
+.auction-section--metrics {
+  padding-bottom: 20px;
+}
+
+.auction-metrics__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.auction-metric-card {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(233, 220, 208, 0.9);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auction-metric-card__label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--auction-muted);
+}
+
+.auction-metric-card__value {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.auction-metric-card__detail {
+  margin: 0;
+  color: var(--auction-muted);
+  font-size: 12px;
+}
+
+.auction-metric-card__meter {
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background: rgba(201, 127, 79, 0.15);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.auction-metric-card__meter div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--auction-accent), #e4a474);
+}
+
+.auction-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.auction-timeline__item {
+  border-radius: 18px;
+  border: 1px solid rgba(233, 220, 208, 0.8);
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.auction-timeline__header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--auction-ink);
+  font-size: 14px;
+}
+
+.auction-timeline__bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(201, 127, 79, 0.12);
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.auction-timeline__bar div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #c97f4f, #f2b987);
+}
+
+.auction-timeline__stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--auction-muted);
+}
+
+.auction-empty {
+  border-radius: 18px;
+  border: 1px dashed rgba(233, 220, 208, 0.9);
+  padding: 24px;
+  text-align: center;
+  color: var(--auction-muted);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.auction-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.auction-performers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-performer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(233, 220, 208, 0.7);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.auction-performer__rank {
+  font-weight: 700;
+  color: var(--auction-accent);
+}
+
+.auction-performer__body {
+  flex: 1;
+}
+
+.auction-performer__name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.auction-performer__meta {
+  margin: 2px 0 0;
+  color: var(--auction-muted);
+  font-size: 13px;
+}
+
+.auction-performer__value {
+  font-weight: 600;
+}
+
+.auction-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.auction-table th,
+.auction-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(233, 220, 208, 0.7);
+}
+
+.auction-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.auction-revenue {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.auction-revenue__chart {
+  width: 100%;
+  height: 260px;
+  position: relative;
+}
+
+.auction-revenue__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-revenue__item,
+.auction-revenue__total {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(233, 220, 208, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.auction-revenue__total {
+  background: var(--auction-accent-soft);
+  font-weight: 700;
+}
+
+.auction-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .auction-revenue {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .auction-report {
+    padding: 20px 16px 40px;
+  }
+
+  .auction-hero,
+  .auction-section,
+  .auction-posters {
+    padding: 24px;
+  }
+
+  .auction-revenue__chart {
+    height: 220px;
+  }
+}
+
+.auction-btn--secondary:hover:not(:disabled) {
+  background: rgba(201, 127, 79, 0.15);
+}
+
+.auction-btn--ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.auction-btn--dashed:hover:not(:disabled) {
+  color: var(--auction-accent);
+  border-color: var(--auction-accent);
+}
+
+.auction-poster-card__body button {
+  width: auto;
+}
+
+.auction-poster-card__body.is-empty .auction-btn {
+  max-width: 200px;
+}
+
+.auction-timeline__header span:last-child {
+  color: var(--auction-muted);
+  font-weight: 500;
+}
+
+.auction-timeline__stats span:last-child {
+  font-weight: 600;
+  color: var(--auction-accent);
+}
+
+.auction-table th {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--auction-muted);
+}
+
+.auction-table td:last-child {
+  font-weight: 600;
+}
+
+.auction-revenue__item span {
+  color: var(--auction-muted);
+  text-transform: capitalize;
+}
+
+.auction-revenue__item strong,
+.auction-revenue__total strong {
+  font-size: 15px;
+}
+
+.theme-dark .auction-report {
+  background: #141212;
+  color: #f8f1e8;
+}
+
+.theme-dark .auction-hero,
+.theme-dark .auction-section,
+.theme-dark .auction-posters {
+  background: #1f1c1a;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 80px -60px rgba(0, 0, 0, 0.8);
+}
+
+.theme-dark .auction-meta-grid div,
+.theme-dark .auction-metric-card,
+.theme-dark .auction-poster-card,
+.theme-dark .auction-poster-card__body,
+.theme-dark .auction-performer,
+.theme-dark .auction-timeline__item,
+.theme-dark .auction-empty,
+.theme-dark .auction-revenue__item,
+.theme-dark .auction-revenue__total {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: inherit;
+}
+
+.theme-dark .auction-btn--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8f1e8;
+}
+
+.theme-dark .auction-btn--secondary {
+  background: rgba(201, 127, 79, 0.22);
+  color: #ffd9c1;
+  border-color: rgba(201, 127, 79, 0.65);
+}
+
+.theme-dark .auction-table th,
+.theme-dark .auction-section-support,
+.theme-dark .auction-eyebrow,
+.theme-dark .auction-performer__meta,
+.theme-dark .auction-metric-card__detail,
+.theme-dark .auction-timeline__stats span,
+.theme-dark .auction-revenue__item span {
+  color: rgba(248, 241, 232, 0.65);
+}
+
+/* Mobile Responsive Styles for Comprehensive Print */
+@media (max-width: 768px) {
+  .comprehensive-print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+  }
+
+  .comprehensive-print-container.print-preview-visible {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px !important;
+  }
+
+  .comprehensive-print-mode .comprehensive-print-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px !important;
+  }
+
+  .print-poster-page {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+  }
+
+  .print-poster-image {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 80vh !important;
+    position: relative !important;
+  }
+
+  .print-section-header {
+    padding: 16px 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .print-section-title {
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .print-team-item {
+    margin-bottom: 16px !important;
+  }
+
+  .print-team-logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .print-team-name {
+    font-size: 16px !important;
+  }
+
+  .print-team-guests {
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+
+  .print-guest-card {
+    width: 120px !important;
+    min-width: 120px !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 12px !important;
+  }
+
+  .print-guest-photo {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .print-guest-name {
+    font-size: 12px !important;
+  }
+
+  .print-players-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .print-player-card-item {
+    padding: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .comprehensive-print-container {
+    padding: 8px !important;
+  }
+
+  .comprehensive-print-container.print-preview-visible {
+    padding: 12px !important;
+  }
+
+  .print-section-header {
+    padding: 12px 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .print-section-title {
+    font-size: 18px !important;
+    gap: 10px !important;
+  }
+
+  .print-section-title span {
+    font-size: 24px !important;
+    padding: 6px 10px !important;
+  }
+
+  .print-team-item {
+    border-radius: 14px !important;
+  }
+
+  .print-team-logo {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .print-team-name {
+    font-size: 14px !important;
+  }
+
+  .print-team-guests {
+    padding: 12px !important;
+    gap: 10px !important;
+  }
+
+  .print-guest-card {
+    width: 100px !important;
+    min-width: 100px !important;
+    padding: 10px !important;
+  }
+
+  .print-guest-photo {
+    width: 75px !important;
+    height: 75px !important;
+  }
+
+  .print-guest-name {
+    font-size: 11px !important;
+  }
+
+  .print-players-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .print-player-card-item {
+    padding: 6px !important;
+  }
+}
+
+/* Header Hide/Show on Scroll */
+.print-page-header {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+}
+
+.print-page-header.header-visible {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.print-page-header.header-hidden {
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.print-preview-header.header-visible {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.print-preview-header.header-hidden {
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Image Lightbox Modal */
+.image-lightbox-modal {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.image-lightbox-modal img {
+  animation: zoomIn 0.3s ease-in-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Make images clickable */
+.print-poster-image,
+.print-team-logo img,
+.print-guest-photo-img,
+.print-player-card-image,
+.print-player-photo-fallback {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.print-poster-image:hover,
+.print-team-logo img:hover,
+.print-guest-photo-img:hover,
+.print-player-card-image:hover,
+.print-player-photo-fallback:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}

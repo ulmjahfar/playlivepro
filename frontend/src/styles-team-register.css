@@ -1,0 +1,483 @@
+.team-register-page {
+  min-height: 100vh;
+  height: auto;
+  padding: 40px 20px;
+  padding-bottom: 60px;
+  background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: visible;
+  box-sizing: border-box;
+}
+
+.simple-register-container {
+  max-width: 600px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin: 20px 0;
+}
+
+.form-header {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  padding: 40px 40px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.tournament-logo-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.tournament-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.simple-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.simple-subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tournament-location {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 8px 0 0;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.simple-form {
+  padding: 40px;
+}
+
+.simple-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Registration Status Banner */
+.registration-status-banner {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 2px solid;
+  animation: slideDown 0.3s ease-out;
+}
+
+.registration-status-banner.status-available {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.registration-status-banner.status-full {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.status-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.status-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.status-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-text strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.status-text span {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.status-text .status-warning {
+  font-size: 0.85rem;
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-fieldset {
+  display: contents;
+}
+
+.form-fieldset:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.form-fieldset:disabled .form-group input,
+.form-fieldset:disabled .form-group select {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 1rem;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #ffffff;
+}
+
+.phone-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.country-code-display {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+  user-select: none;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.fixed-value-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+}
+
+.fixed-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 40px;
+  text-align: center;
+}
+
+.fixed-value-label {
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 4px;
+}
+
+.submit-btn {
+  padding: 14px 24px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(115deg, #6366f1, #4338ca);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:disabled,
+.submit-btn.btn-disabled {
+  background: rgba(148, 163, 184, 0.5);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.submit-btn:disabled:hover,
+.submit-btn.btn-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.loading {
+  text-align: center;
+  padding: 120px 0;
+  font-size: 1.2rem;
+  color: #64748b;
+}
+
+.error {
+  max-width: 600px;
+  margin: 120px auto;
+  padding: 34px;
+  text-align: center;
+  border-radius: 16px;
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Guest Players Section */
+.guest-section {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.guest-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.guest-section-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.btn-add-guest {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-add-guest:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.guest-card {
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.guest-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.guest-card-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.btn-remove-guest {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-remove-guest:hover {
+  background: rgba(220, 38, 38, 0.15);
+}
+
+.guest-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 1rem;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #ffffff;
+}
+
+/* Ensure scrolling works - override any global restrictions */
+body.team-register-page-active,
+html.team-register-page-active {
+  overflow-y: auto !important;
+  height: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (max-width: 640px) {
+  body.team-register-page-active,
+  html.team-register-page-active {
+    overflow-y: auto !important;
+    height: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .team-register-page {
+    padding: 20px 16px;
+    padding-bottom: 40px;
+    align-items: flex-start;
+  }
+
+  .form-header {
+    padding: 32px 24px 40px;
+  }
+
+  .tournament-logo {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  }
+
+  .simple-form {
+    padding: 32px 24px;
+  }
+
+  .simple-title {
+    font-size: 1.6rem;
+  }
+
+  .simple-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .tournament-location {
+    font-size: 0.9rem;
+  }
+
+  .guest-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .guest-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,28 @@
+[dotenv@17.2.3] injecting env (2) from .env -- tip: ΓÜÖ∩╕Å  suppress all logs with { quiet: true }
+C:\playlive\backend\node_modules\path-to-regexp\dist\index.js:96
+            throw new PathError(`Missing parameter name at index ${index}`, str);
+            ^
+
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\playlive\backend\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\playlive\backend\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\playlive\backend\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\playlive\backend\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\playlive\backend\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\playlive\backend\node_modules\router\lib\layer.js:93:62)
+    at Function.route (C:\playlive\backend\node_modules\router\index.js:428:17)
+    at Function.route (C:\playlive\backend\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as get] (C:\playlive\backend\node_modules\express\lib\application.js:478:22)
+    at Object.<anonymous> (C:\playlive\backend\server.js:54:5)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  originalPath: '*'
+}
+
+Node.js v22.21.0

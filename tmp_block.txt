@@ -1,0 +1,422 @@
+        <div className="notifications-grid">
+          <main className="notifications-main">
+            <form onSubmit={handleSendNotification} className="notifications-form">
+              <section className="notifications-card composer-card">
+                <header className="card-header">
+                  <div>
+                    <p className="card-eyebrow">Message</p>
+                    <h2>Compose your update</h2>
+                    <p className="card-subtitle">{composerSubtitle}</p>
+                  </div>
+                  <div className="card-stat">
+                    <span>Channel health</span>
+                    <strong>{deliverabilityScore}% ready</strong>
+                    <small>{activeChannel.ready} contacts available</small>
+                  </div>
+                </header>
+
+                <div className="channel-switch">
+                  {Object.values(channelConfig).map((option) => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      className={`channel-pill ${notificationForm.type === option.id ? 'active' : ''}`}
+                      onClick={() => setNotificationForm(prev => ({ ...prev, type: option.id }))}
+                    >
+                      <span className="channel-pill__icon">{option.icon}</span>
+                      <div className="channel-pill__copy">
+                        <strong>{option.label}</strong>
+                        <span>{option.caption}</span>
+                      </div>
+                      <span className="channel-pill__meta">
+                        {option.ready}/{totalPlayers || 0} ready
+                      </span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="composer-body">
+                  <div className="composer-editor">
+                    <div className="field-headline">
+                      <label htmlFor="notification-message">Message content</label>
+                      <span>{notificationForm.message.length} characters</span>
+                    </div>
+                    <textarea
+                      id="notification-message"
+                      name="message"
+                      value={notificationForm.message}
+                      onChange={handleFormChange}
+                      required
+                      rows="7"
+                      placeholder="Type your update here... lead with the What, When, and Action needed."
+                      className="textarea-modern composer-textarea"
+                    />
+                    <div className="template-grid">
+                      {primaryTemplates.map((template) => (
+                        <button
+                          type="button"
+                          key={template.id}
+                          className="template-chip"
+                          onClick={() => handleTemplateApply(template.body)}
+                        >
+                          <span className="template-chip__title">{template.title}</span>
+                          <span className="template-chip__meta">{template.meta}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="composer-preview">
+                    <p className="preview-label">
+                      {notificationForm.type === 'email' ? 'Email preview' : 'WhatsApp preview'}
+                    </p>
+                    <div className={`preview-bubble preview-bubble--${activeChannel.tone}`}>
+                      <div className="preview-bubble__header">
+                        <span className="preview-channel-icon">{activeChannel.icon}</span>
+                        <div>
+                          <strong>{tournament.name}</strong>
+                          <span>{notificationForm.type === 'email' ? 'via email' : 'via WhatsApp'}</span>
+                        </div>
+                      </div>
+                      <p>{previewMessage}</p>
+                    </div>
+                    <div className="preview-meta">
+                      <div>
+                        <span>Estimated reach</span>
+                        <strong>{selectedReachCount}</strong>
+                        <small>{audienceScopeLabel}</small>
+                      </div>
+                      <div className="preview-meter">
+                        <div
+                          className="preview-meter__value"
+                          style={{ width: `${deliverabilityScore}%` }}
+                        />
+                      </div>
+                      <small>{deliverabilityScore}% of roster has valid contact for this channel</small>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="notifications-card audience-card">
+                <header className="card-header">
+                  <div>
+                    <p className="card-eyebrow">Audience</p>
+                    <h2>Choose recipients</h2>
+                    <p className="card-subtitle">Blend full-roster blasts with curated groups.</p>
+                  </div>
+                  <div className="audience-metrics">
+                    {audienceMetrics.map((metric) => (
+                      <div key={metric.label} className="audience-metric">
+                        <span>{metric.label}</span>
+                        <strong>{metric.value}</strong>
+                      </div>
+                    ))}
+                  </div>
+                </header>
+
+                <label className="audience-toggle">
+                  <input
+                    type="checkbox"
+                    name="sendToAll"
+                    checked={notificationForm.sendToAll}
+                    onChange={handleFormChange}
+                    className="modern-checkbox"
+                  />
+                  <span className="audience-toggle__control"></span>
+                  <div className="audience-toggle__copy">
+                    <strong>Send to every registered player</strong>
+                    <span>{totalPlayers} players · {activeChannel.ready} contacts ready</span>
+                  </div>
+                </label>
+
+                {!notificationForm.sendToAll && (
+                  <div className="player-selection-section-modern">
+                    <div className="player-selection-header-modern">
+                      <div>
+                        <h3>Select recipients</h3>
+                        <p>Search, filter, and hand-pick the people to notify.</p>
+                      </div>
+                      <div className="selection-actions-modern">
+                        <button
+                          type="button"
+                          onClick={selectAllPlayers}
+                          className="action-btn-modern-notif"
+                        >
+                          <span>✓</span>
+                          <span>Select All</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={clearSelection}
+                          className="action-btn-modern-notif"
+                        >
+                          <span>✕</span>
+                          <span>Clear</span>
+                        </button>
+                        <div className="selection-badge-modern">
+                          <span className="badge-count-modern">
+                            {notificationForm.sendToAll ? totalPlayers : selectedPlayers.length}
+                          </span>
+                          <span>selected</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="player-search-wrapper-modern">
+                      <span className="search-icon-modern">🔍</span>
+                      <input
+                        type="text"
+                        placeholder="Search by name, player ID, mobile number, or city..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="search-input-modern"
+                      />
+                      {searchTerm && (
+                        <button
+                          type="button"
+                          onClick={() => setSearchTerm('')}
+                          className="search-clear-modern"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="player-list-container-modern">
+                      {filteredPlayers.length === 0 ? (
+                        <div className="empty-player-list">
+                          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                          </svg>
+                          <p>No players found matching your search criteria.</p>
+                          <button
+                            type="button"
+                            onClick={() => setSearchTerm('')}
+                            className="btn btn-secondary btn-sm"
+                          >
+                            Clear search
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="player-list">
+                          {filteredPlayers.map(player => {
+                            const isSelected = selectedPlayers.includes(player._id);
+                            const hasContact = notificationForm.type === 'email'
+                              ? player.email
+                              : player.mobile;
+
+                            return (
+                              <div
+                                key={player._id}
+                                className={`player-item-modern ${isSelected ? 'selected' : ''} ${!hasContact ? 'no-contact' : ''}`}
+                                onClick={() => togglePlayerSelection(player._id)}
+                              >
+                                <div className="player-item-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    checked={isSelected}
+                                    onChange={() => togglePlayerSelection(player._id)}
+                                    disabled={notificationForm.sendToAll}
+                                    style={{ position: 'absolute', opacity: 0 }}
+                                  />
+                                </div>
+                                <div className="player-item-avatar-modern">
+                                  {player.name ? player.name.charAt(0).toUpperCase() : '?'}
+                                </div>
+                                <div className="player-item-info-modern">
+                                  <div className="player-item-name-modern">
+                                    {player.name || 'Unknown Player'}
+                                    {player.playerId && (
+                                      <span className="player-item-id-modern">#{player.playerId}</span>
+                                    )}
+                                  </div>
+                                  <div className="player-item-contact-modern">
+                                    {notificationForm.type === 'email' ? (
+                                      player.email ? (
+                                        <>
+                                          <span>📧</span>
+                                          <span>{player.email}</span>
+                                        </>
+                                      ) : (
+                                        <span className="no-contact-text">No email address</span>
+                                      )
+                                    ) : (
+                                      player.mobile ? (
+                                        <>
+                                          <span>📱</span>
+                                          <span>{player.mobile}</span>
+                                        </>
+                                      ) : (
+                                        <span className="no-contact-text">No mobile number</span>
+                                      )
+                                    )}
+                                    {player.city && (
+                                      <>
+                                        <span style={{ color: '#cbd5e1' }}>•</span>
+                                        <span>📍</span>
+                                        <span>{player.city}</span>
+                                      </>
+                                    )}
+                                  </div>
+                                </div>
+                                {!hasContact && (
+                                  <div className="no-contact-badge-modern">
+                                    ⚠️ Missing {notificationForm.type === 'email' ? 'email' : 'mobile'}
+                                  </div>
+                                )}
+                                {isSelected && (
+                                  <div className="selected-indicator-modern">
+                                    ✓
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </section>
+
+              <div className="notifications-form-actions">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNotificationForm({
+                      message: '',
+                      type: 'email',
+                      sendToAll: false
+                    });
+                    setSelectedPlayers([]);
+                    setSearchTerm('');
+                  }}
+                  className="btn-modern btn-secondary-modern"
+                >
+                  <span>↺</span>
+                  <span>Reset</span>
+                </button>
+                <button
+                  type="submit"
+                  disabled={sendDisabled}
+                  className="btn-modern btn-primary-modern btn-send"
+                >
+                  {sending ? (
+                    <>
+                      <span className="spinner-modern">⟳</span>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>📤</span>
+                      <span>Send {notificationForm.type === 'email' ? 'Email' : 'WhatsApp'} notification</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+
+            {sendResults && sendResults.length > 0 && (
+              <section className="notifications-card results-card">
+                <header className="card-header">
+                  <div>
+                    <p className="card-eyebrow">Delivery</p>
+                    <h2>Latest send report</h2>
+                    <p className="card-subtitle">Track who received what in real time.</p>
+                  </div>
+                  <button
+                    onClick={() => setSendResults(null)}
+                    className="results-dismiss-btn"
+                    aria-label="Close delivery summary"
+                  >
+                    ✕
+                  </button>
+                </header>
+                <div className="results-summary-modern">
+                  <div className="result-stat-card-modern">
+                    <div className="stat-icon-modern total">👥</div>
+                    <div className="stat-content">
+                      <span className="stat-value-modern">{sendResults.length}</span>
+                      <span className="stat-label-modern">Total sent</span>
+                    </div>
+                  </div>
+                  <div className="result-stat-card-modern success">
+                    <div className="stat-icon-modern success">✓</div>
+                    <div className="stat-content">
+                      <span className="stat-value-modern">
+                        {sendResults.filter(r => r.status?.includes('Sent')).length}
+                      </span>
+                      <span className="stat-label-modern">Successful</span>
+                    </div>
+                  </div>
+                  <div className="result-stat-card-modern error">
+                    <div className="stat-icon-modern error">✕</div>
+                    <div className="stat-content">
+                      <span className="stat-value-modern">
+                        {sendResults.filter(r => r.status?.includes('Failed')).length}
+                      </span>
+                      <span className="stat-label-modern">Failed</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="results-list-modern">
+                  {sendResults.map((result, index) => {
+                    const isSuccess = result.status?.includes('Sent');
+                    return (
+                      <div
+                        key={index}
+                        className={`result-item-modern ${isSuccess ? 'success' : 'error'}`}
+                      >
+                        <div className="result-item-icon-modern">
+                          {isSuccess ? '✓' : '✕'}
+                        </div>
+                        <div className="result-item-info-modern">
+                          <div className="result-item-player-modern">
+                            Player ID: <strong>{result.playerId}</strong>
+                          </div>
+                          <div className="result-item-status-modern">
+                            {result.status}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+          </main>
+
+          <aside className="notifications-sidebar">
+            <section className="notifications-card insight-card">
+              <header className="card-header">
+                <div>
+                  <p className="card-eyebrow">Status</p>
+                  <h3>Health snapshot</h3>
+                </div>
+              </header>
+              <div className="insight-grid">
+                {insightCards.map((card) => (
+                  <div key={card.label} className={`insight-item insight-item--${card.tone}`}>
+                    <p className="insight-item__label">{card.label}</p>
+                    <strong className="insight-item__value">{card.value}</strong>
+                    <span className="insight-item__helper">{card.helper}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="notifications-card templates-card">
+              <header className="card-header">
+                <div>
+                  <p className="card-eyebrow">Snippets</p>
+                  <h3>Reusable copy</h3>
+                </div>
+              </header>
+              <div className="template-list">
+                {quickTemplates.map((template) => (
+                  <button
+                    type="button"
+                    key={template.id}
+                    className="template-list/ item"  # placeholder
