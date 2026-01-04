@@ -331,34 +331,52 @@ io.on('connection', (socket) => {
 
 
 
+// Health check endpoint (responds even if MongoDB isn't connected)
+app.get('/health', (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+  res.status(200).json({ 
+    status: 'ok', 
+    database: dbStatus,
+    timestamp: new Date().toISOString()
+  });
+});
+
 const PORT = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/playlive')
-  .then(async () => {
-    console.log('✅ MongoDB connected');
-    try {
-      await seedTierSystem();
-      console.log('🎯 Tier system seeded');
-    } catch (error) {
-      console.error('⚠️ Failed to seed tier system', error);
-    }
-    // Set io instance for auction routes
-    setAuctionIo(io);
-    // Set io instance for grouping routes
-    setGroupingIo(io);
-    // Set io instance for fixture routes
-    setFixtureIo(io);
 
-    // Schedule daily auto-delete cleanup job (runs at 2 AM every day)
-    cron.schedule('0 2 * * *', async () => {
-      console.log('🕐 Running scheduled auto-delete cleanup...');
+// Start server immediately so Render can detect the port
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 PlayLive running on port ${PORT} (accessible from all interfaces)`);
+  
+  // Connect to MongoDB asynchronously
+  mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/playlive')
+    .then(async () => {
+      console.log('✅ MongoDB connected');
       try {
-        await runAutoDeleteCleanup();
+        await seedTierSystem();
+        console.log('🎯 Tier system seeded');
       } catch (error) {
-        console.error('❌ Error in scheduled auto-delete cleanup:', error);
+        console.error('⚠️ Failed to seed tier system', error);
       }
-    });
-    console.log('⏰ Auto-delete cleanup job scheduled (daily at 2 AM)');
+      // Set io instance for auction routes
+      setAuctionIo(io);
+      // Set io instance for grouping routes
+      setGroupingIo(io);
+      // Set io instance for fixture routes
+      setFixtureIo(io);
 
-    server.listen(PORT, '0.0.0.0', () => console.log(`🚀 PlayLive running on port ${PORT} (accessible from all interfaces)`));
-  })
-  .catch(err => console.error(err));
+      // Schedule daily auto-delete cleanup job (runs at 2 AM every day)
+      cron.schedule('0 2 * * *', async () => {
+        console.log('🕐 Running scheduled auto-delete cleanup...');
+        try {
+          await runAutoDeleteCleanup();
+        } catch (error) {
+          console.error('❌ Error in scheduled auto-delete cleanup:', error);
+        }
+      });
+      console.log('⏰ Auto-delete cleanup job scheduled (daily at 2 AM)');
+    })
+    .catch(err => {
+      console.error('❌ MongoDB connection error:', err);
+      console.error('⚠️ Server is running but database is not connected. Some features may not work.');
+    });
+});
